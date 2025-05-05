@@ -13,5 +13,17 @@
     <a routerLink="/" class="hover:text-secondary transition-colors">
       Contacto
     </a>
+    @if (isLoggedIn) {
+    <p>Hola {{ username }}</p>
+    <a
+      class="hover:text-secondary transition-colors cursor-pointer"
+      (click)="logout()"
+      >Cerrar Sesión</a
+    >
+    }@else{
+    <a routerLink="/login" class="hover:text-secondary transition-colors"
+      >Iniciar Sesión</a
+    >
+    }
   </div>
 </nav>
