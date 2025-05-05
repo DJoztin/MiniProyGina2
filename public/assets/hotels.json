@@ -1,0 +1,99 @@
+[
+    {
+      "nombre": "Hotel Oasis",
+      "descripcion": "Un lugar tranquilo cerca del mar.",
+      "ubicacion": "Cancún, México",
+      "precio": 120,
+      "rating": 4.5,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,resort,1"
+    },
+    {
+      "nombre": "Montaña Viva",
+      "descripcion": "Escápate a las montañas y relájate.",
+      "ubicacion": "Bariloche, Argentina",
+      "precio": 90,
+      "rating": 4.2,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,mountain,2"
+    },
+    {
+      "nombre": "Hotel Central",
+      "descripcion": "En el corazón de la ciudad.",
+      "ubicacion": "Madrid, España",
+      "precio": 150,
+      "rating": 4.8,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,city,3"
+    },
+    {
+      "nombre": "Costa Azul",
+      "descripcion": "Vista directa al mar Mediterráneo.",
+      "ubicacion": "Nice, Francia",
+      "precio": 200,
+      "rating": 4.7,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,beach,4"
+    },
+    {
+      "nombre": "Árbol de Vida",
+      "descripcion": "Eco hotel en medio de la selva.",
+      "ubicacion": "Tulum, México",
+      "precio": 130,
+      "rating": 4.3,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,jungle,5"
+    },
+    {
+      "nombre": "Nieve Eterna",
+      "descripcion": "Ideal para amantes del esquí.",
+      "ubicacion": "Zermatt, Suiza",
+      "precio": 250,
+      "rating": 4.9,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,snow,6"
+    },
+    {
+      "nombre": "Puerta del Sol",
+      "descripcion": "Cerca de todos los sitios históricos.",
+      "ubicacion": "Sevilla, España",
+      "precio": 110,
+      "rating": 4.4,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,city,7"
+    },
+    {
+      "nombre": "Hotel Sakura",
+      "descripcion": "Estilo tradicional japonés.",
+      "ubicacion": "Kyoto, Japón",
+      "precio": 170,
+      "rating": 4.6,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,japan,8"
+    },
+    {
+      "nombre": "Desierto de Estrellas",
+      "descripcion": "Glamping bajo el cielo del desierto.",
+      "ubicacion": "Marrakech, Marruecos",
+      "precio": 140,
+      "rating": 4.2,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,desert,9"
+    },
+    {
+      "nombre": "Aurora Boreal Inn",
+      "descripcion": "Ve las luces del norte desde tu cama.",
+      "ubicacion": "Reikiavik, Islandia",
+      "precio": 220,
+      "rating": 4.9,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,northernlights,10"
+    },
+    {
+      "nombre": "Safari Lodge",
+      "descripcion": "Aventura y confort en la sabana.",
+      "ubicacion": "Nairobi, Kenia",
+      "precio": 190,
+      "rating": 4.6,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,safari,11"
+    },
+    {
+      "nombre": "Atlántico Azul",
+      "descripcion": "Descanso frente al Atlántico.",
+      "ubicacion": "Lisboa, Portugal",
+      "precio": 135,
+      "rating": 4.3,
+      "imagenUrl": "https://source.unsplash.com/featured/?hotel,sea,12"
+    }
+  ]
+  
