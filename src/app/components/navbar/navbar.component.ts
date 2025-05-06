@@ -12,8 +12,13 @@ import { LoginService } from '../../services/login.service';
 export class NavbarComponent {
   @Input() username: string = 'Usuario';
   @Input() isLoggedIn: boolean = false;
+  mobileMenuVisible: boolean = false;
 
   constructor(private loginService: LoginService) {}
+
+  toggleMobileMenu() {
+    this.mobileMenuVisible = !this.mobileMenuVisible;
+  }
 
   logout() {
     this.loginService.logout();

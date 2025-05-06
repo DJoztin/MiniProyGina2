@@ -11,12 +11,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css'],
 })
-
 export class CarouselComponent {
   images = [
-    { url: '/img/caroussel1.jpg' },
-    { url: '/img/caroussel2.jpg' },
-    { url: '/img/caroussel3.jpg' }
+    { url: '/assets/img/caroussel1.jpg' },
+    { url: '/assets/img/caroussel2.jpg' },
+    { url: '/assets/img/caroussel3.jpg' },
   ];
 
   currentIndex: number = 1;
@@ -28,7 +27,7 @@ export class CarouselComponent {
 
   prev() {
     this.currentIndex = this.currentIndex - 1;
-    if(this.currentIndex < 0){
+    if (this.currentIndex < 0) {
       this.currentIndex = 2;
     }
     this.resetInterval();
@@ -36,14 +35,14 @@ export class CarouselComponent {
 
   next() {
     this.currentIndex = this.currentIndex + 1;
-    if(this.currentIndex > 2){
+    if (this.currentIndex > 2) {
       this.currentIndex = 0;
     }
     this.resetInterval();
   }
 
   ngOnInit() {
-    this.changeImgInterval=setInterval(() => {
+    this.changeImgInterval = setInterval(() => {
       this.next();
     }, 5000);
   }

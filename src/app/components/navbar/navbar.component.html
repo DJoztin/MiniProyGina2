@@ -1,32 +1,71 @@
 <nav
-  class="flex items-center justify-between px-20 py-4 bg-transparent text-white"
+  class="flex items-center justify-between px-6 sm:px-10 md:px-20 py-4 bg-transparent text-white"
 >
   <div class="flex flex-row items-center gap-4">
-    <img src="favicon.png" alt="Logo" class="w-20 h-20" />
-    <a routerLink="/" class="text-3xl uppercase italic font-medium">Fluky Resorts</a>
+    <img src="favicon.png" alt="Logo" class="w-16 h-16 sm:w-20 sm:h-20" />
+    <a routerLink="/" class="text-2xl sm:text-3xl uppercase italic font-medium">
+      Fluky Resorts
+    </a>
   </div>
-  <div class="flex gap-4 text-lg">
-    <a routerLink="/about" class="hover:text-secondary transition-colors">
-      Nosotros
-    </a>
-    <a routerLink="/" class="hover:text-secondary transition-colors">
-      Anuncios
-    </a>
-    <a routerLink="/" class="hover:text-secondary transition-colors"> Blog </a>
-    <a routerLink="/" class="hover:text-secondary transition-colors">
-      Contacto
-    </a>
+
+  <!-- Menú de navegación (desktop) -->
+  <div class="hidden md:flex gap-4 text-lg">
+    <a routerLink="/about" class="hover:text-secondary transition-colors"
+      >Nosotros</a
+    >
+    <a routerLink="/" class="hover:text-secondary transition-colors"
+      >Anuncios</a
+    >
+    <a routerLink="/" class="hover:text-secondary transition-colors">Blog</a>
+    <a routerLink="/" class="hover:text-secondary transition-colors"
+      >Contacto</a
+    >
+
     @if (isLoggedIn) {
     <p>Hola {{ username }}</p>
     <a
       class="hover:text-secondary transition-colors cursor-pointer"
       (click)="logout()"
-      >Cerrar Sesión</a
     >
-    }@else{
-    <a routerLink="/login" class="hover:text-secondary transition-colors"
-      >Iniciar Sesión</a
-    >
+      Cerrar Sesión
+    </a>
+    } @else {
+    <a routerLink="/login" class="hover:text-secondary transition-colors">
+      Iniciar Sesión
+    </a>
     }
   </div>
+
+  <div class="md:hidden flex items-center gap-4">
+    <button class="text-xl" (click)="toggleMobileMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
 </nav>
+
+@if (mobileMenuVisible) {
+<div
+  class="md:hidden flex flex-col items-center gap-4 mt-4 text-white bg-primary px-6 py-4"
+>
+  <a routerLink="/about" class="hover:text-secondary transition-colors"
+    >Nosotros</a
+  >
+  <a routerLink="/" class="hover:text-secondary transition-colors">Anuncios</a>
+  <a routerLink="/" class="hover:text-secondary transition-colors">Blog</a>
+  <a routerLink="/" class="hover:text-secondary transition-colors">Contacto</a>
+
+  @if (isLoggedIn) {
+  <p>Hola {{ username }}</p>
+  <a
+    class="hover:text-secondary transition-colors cursor-pointer"
+    (click)="logout()"
+  >
+    Cerrar Sesión
+  </a>
+  } @else {
+  <a routerLink="/login" class="hover:text-secondary transition-colors">
+    Iniciar Sesión
+  </a>
+  }
+</div>
+}
