@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // modifica el logout:
   logout() {
     this.authService.logout();
     this.isLoggedIn = false;

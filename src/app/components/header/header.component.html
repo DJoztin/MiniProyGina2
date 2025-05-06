@@ -1,8 +1,8 @@
 <header
   [ngClass]="{
-    'h-screen w-full flex flex-col items-center justify-between flex-wrap px-6 py-4 bg-[url(/assets/img/header.jpg)] bg-cover bg-center bg-no-repeat text-white ':
+    'h-screen w-full flex flex-col items-center justify-between flex-wrap bg-[url(/assets/img/header.jpg)] bg-cover bg-center bg-no-repeat text-white ':
       currentRoute === '',
-    'w-full flex items-center justify-between px-20 py-4 bg-primary text-white':
+    'w-full flex items-center justify-between bg-primary text-white':
       currentRoute !== ''
   }"
 >
@@ -12,7 +12,7 @@
     [username]="username"
   ></app-navbar>
   @if (currentRoute === '') {
-  <div class="w-full px-20 py-120 text-2xl font-semibold">
+  <div class="w-full px-20 py-120 text-2xl font-semibold text-white">
     <h2 class="font-semibold italic">
       Where comfort meets luck
       <strong class="font-normal">- Fluky Resorts</strong>
