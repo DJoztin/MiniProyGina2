@@ -14,8 +14,8 @@ export class HotelsComponent {
   constructor(public hotelsService: HotelsService) {}
 
   ngOnInit() {
-    this.hotelsService.getHotels().subscribe((data: any) => {
-      this.hotels = data;
+    this.hotelsService._hotelsObs.subscribe((hotels) => {
+      this.hotels = hotels;
     });
   }
 }
