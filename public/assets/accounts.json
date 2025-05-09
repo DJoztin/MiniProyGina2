@@ -2,11 +2,13 @@
   {
     "id": 1,
     "username": "Luis",
+    "email": "lflores1234@gmail.com",
     "password": "pass7247"
   },
   {
     "id": 2,
     "username": "Jostin",
+    "email": "jostin1234@gmail.com",
     "password": "alavarlosbaños"
   }
 ]
