@@ -24,6 +24,5 @@ export const routes: Routes = [
   {
     path: 'logout',
     component: LoginComponent,
-  // Add logic to handle logout in the LoginComponent
   },
 ];
