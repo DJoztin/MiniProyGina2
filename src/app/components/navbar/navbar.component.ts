@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+  @Input() isroot: boolean = false;
   @Input() username: string = 'Usuario';
   @Input() isLoggedIn: boolean = false;
   mobileMenuVisible: boolean = false;

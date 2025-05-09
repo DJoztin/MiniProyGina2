@@ -7,25 +7,37 @@
   </div>
 
   <div class="hidden lg:flex gap-4 text-lg">
-    <a routerLink="/about" class="hover:text-secondary transition-colors">Nosotros</a>
-    <a routerLink="/hotels" class="hover:text-secondary transition-colors">Nuestros Hoteles</a>
-    <a routerLink="/" class="hover:text-secondary transition-colors">Blog</a>
-    <a routerLink="/" class="hover:text-secondary transition-colors">Contacto</a>
+    <a routerLink="/about" 
+    [ngClass]="{'hover:text-primary': isroot===true, 'hover:text-secondary': isroot===false }"
+    class=" transition-colors">Nosotros</a>
+    <a routerLink="/hotels" 
+    [ngClass]="{'hover:text-primary': isroot===true, 'hover:text-secondary': isroot===false }"
+    class=" transition-colors">Nuestros Hoteles</a>
+    <a routerLink="/" 
+    [ngClass]="{'hover:text-primary': isroot===true, 'hover:text-secondary': isroot===false }"
+    class=" transition-colors">Blog</a>
+    <a routerLink="/" 
+    [ngClass]="{'hover:text-primary': isroot===true, 'hover:text-secondary': isroot===false }"
+    class=" transition-colors">Contacto</a>
 
     @if (isLoggedIn) {
     <p>Hola {{ username }}</p>
-    <a class="hover:text-secondary transition-colors cursor-pointer" (click)="logout()">
+    <a 
+    [ngClass]="{'hover:text-primary': isroot===true, 'hover:text-secondary': isroot===false }"
+    class=" transition-colors cursor-pointer" (click)="logout()">
       Cerrar Sesión
     </a>
     } @else {
-    <a routerLink="/login" class="hover:text-secondary transition-colors">
+    <a routerLink="/login" 
+    [ngClass]="{'hover:text-primary': isroot===true, 'hover:text-secondary': isroot===false }"
+    class=" transition-colors">
       Iniciar Sesión
     </a>
     }
   </div>
 
   <div class="lg:hidden flex items-center gap-4">
-    <button class="text-xl" (click)="toggleMobileMenu()">
+    <button [ngClass]="{'rotate-90': mobileMenuVisible, 'rotate-0': !mobileMenuVisible}" class="text-xl transition-all duration-200" (click)="toggleMobileMenu()">
       <fa-icon [icon]="faBars"></fa-icon>
     </button>
   </div>
