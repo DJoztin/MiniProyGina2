@@ -4,6 +4,7 @@ import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { HotelsComponent } from './components/hotels/hotels.component';
 import { HotelComponent } from './components/hotel/hotel.component';
+import { ExtraviosComponent } from './extravios/extravios.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,10 @@ export const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'extravios',
+    component: ExtraviosComponent,
   },
   {
     path: 'login',
