@@ -1,11 +1,13 @@
-import { Component, input, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPencilAlt, faPlusCircle, faTrashAlt, faTurnUp } from '@fortawesome/free-solid-svg-icons';
-import Swal from 'sweetalert2';
+import { faPencilAlt, faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+
+
 
 @Component({
   selector: 'app-admin-panel',
@@ -70,7 +72,8 @@ export class AdminPanelComponent {
       fechaEgreso: '2023-12-25',
     },
   ];
-  constructor(private authService: AuthService, private router: Router, private loginService: LoginService) { }
+  constructor(private authService: AuthService, private router: Router, 
+    private loginService: LoginService, private dialog: MatDialog) { }
 
   editIcon = faPencilAlt;
   deleteIcon = faTrashAlt;
