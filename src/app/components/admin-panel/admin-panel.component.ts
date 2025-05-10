@@ -6,6 +6,8 @@ import { LoginService } from '../../services/login.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPencilAlt, faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
+import { Reservation } from '../../models/reservation';
+import { BookingService } from '../../services/booking.service';
 
 
 
@@ -46,34 +48,12 @@ export class AdminPanelComponent {
     },
   ];
 
-  reservations = [
-    {
-      hotel: 'Hotel Samara',
-      nombre: 'Juan Perez',
-      fechaIngreso: '2023-10-01',
-      fechaEgreso: '2023-10-05',
-    },
-    {
-      hotel: 'Hotel Riviera',
-      nombre: 'Ana Gómez',
-      fechaIngreso: '2023-10-10',
-      fechaEgreso: '2023-10-15',
-    },
-    {
-      hotel: 'Hotel Paraíso',
-      nombre: 'Carlos López',
-      fechaIngreso: '2023-11-01',
-      fechaEgreso: '2023-11-07',
-    },
-    {
-      hotel: 'Hotel Sol y Mar',
-      nombre: 'María Fernández',
-      fechaIngreso: '2023-12-20',
-      fechaEgreso: '2023-12-25',
-    },
-  ];
+  reservations: Reservation[] = [];
+
   constructor(private authService: AuthService, private router: Router, 
-    private loginService: LoginService, private dialog: MatDialog) { }
+    private loginService: LoginService, private dialog: MatDialog, private reservService: BookingService) {
+      this.reservations = reservService.getReservas();
+    }
 
   editIcon = faPencilAlt;
   deleteIcon = faTrashAlt;

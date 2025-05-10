@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BookingService } from '../../services/booking.service';
 import { FormsModule } from '@angular/forms';
+import { Reservation } from '../../models/reservation';
 
 @Component({
   selector: 'app-hotel',
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class HotelComponent {
   hotel!: Hotel;
-  reserva = {
+  reserva: Reservation = {
+    id: 0,
     nombre: '',
     email: '',
     fechaEntrada: '',
@@ -42,12 +44,12 @@ export class HotelComponent {
   ) {
     this.activatedRoute.params.subscribe((params) => {
       this.hotel = this.hotelsService.getHotel(params['id']);
+      this.reserva.hotel = this.hotel.nombre;
     });
   }
 
   reservar() {
-    console.log("aaaa");
-    console.log(this.reserva);
+    // TODO: tratar bien la date para que se guarde lindo en el localstorage
     this.bookingService.agregarReserva(this.reserva);
   }
 }
