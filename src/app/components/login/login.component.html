@@ -27,45 +27,73 @@
             placeholder="Ingrese su usuario"
             required
           />
-          @if ( loginForm.get('username')?.invalid &&
-          loginForm.get('username')?.touched ) {
-          <mat-error> El usuario es requerido </mat-error>
+          @if (loginForm.get('username')?.invalid &&
+          loginForm.get('username')?.touched) {
+          <mat-error>El usuario es requerido</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="w-full mb-4">
+          <mat-label>Correo Electrónico</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Ingrese su correo electrónico"
+            required
+          />
+          @if (loginForm.get('email')?.invalid &&
+          loginForm.get('email')?.touched) {
+          <mat-error>El correo electrónico es requerido</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="fill"
+          class="w-full mb-4"
+          floatLabel="always"
+        >
           <mat-label>Contraseña</mat-label>
           <input
             matInput
-            type="password"
+            [type]="hide() ? 'password' : 'text'"
             formControlName="password"
             placeholder="Ingrese su contraseña"
             required
           />
-          @if ( loginForm.get('password')?.invalid &&
-          loginForm.get('password')?.touched ) {
-          <mat-error> La contraseña es requerida </mat-error>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility($event)"
+            [attr.aria-label]="'Mostrar/ocultar contraseña'"
+            [attr.aria-pressed]="!hide()"
+            type="button"
+          >
+            <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+
+          @if (loginForm.get('password')?.invalid &&
+          loginForm.get('password')?.touched) {
+          <mat-error>La contraseña es requerida</mat-error>
           }
         </mat-form-field>
-      </mat-card-content>
 
-      <mat-card-actions class="flex justify-end">
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="loginForm.invalid"
-        >
-          Ingresar
-        </button>
-      </mat-card-actions>
+        <mat-card-actions class="flex justify-end">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="loginForm.invalid"
+          >
+            Ingresar
+          </button>
+        </mat-card-actions>
+      </mat-card-content>
     </mat-card>
   </form>
   } @else {
   <div class="text-center">
-    <h2 class="text-2xl font-semibold mb-4">
-      ¡Bienvenido, {{ loginForm.get("username")?.value }}!
-    </h2>
+    <h2 class="text-2xl font-semibold mb-4">¡Bienvenido, {{ username }}!</h2>
+    <a routerLink="/admin" mat-button color="warn" >Ir al panel de administracion</a>
     <button mat-button color="warn" (click)="logout()">Cerrar sesión</button>
   </div>
   }

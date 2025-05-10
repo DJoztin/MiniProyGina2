@@ -2,7 +2,9 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
-import { BookingComponent } from './components/booking/booking.component';
+import { HotelsComponent } from './components/hotels/hotels.component';
+import { HotelComponent } from './components/hotel/hotel.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 export const routes: Routes = [
   {
@@ -25,10 +27,17 @@ export const routes: Routes = [
   {
     path: 'logout',
     component: LoginComponent,
-  // Add logic to handle logout in the LoginComponent
   },
   {
-    path: 'booking/:hotelName',
-    component: BookingComponent,
+    path: 'hotels',
+    component: HotelsComponent,
+  },
+  {
+    path: 'hotel/:id',
+    component: HotelComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminPanelComponent,
   }
 ];

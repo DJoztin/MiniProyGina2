@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import {
   FormBuilder,
@@ -12,6 +12,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatError } from '@angular/material/form-field';
 import { AuthService } from '../../services/auth.service';
+import { MatIcon } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -22,6 +25,8 @@ import { AuthService } from '../../services/auth.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIcon,
+    RouterModule,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
@@ -30,7 +35,15 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   accounts: any[] = [];
   isLoggedIn = false;
+  username: string = '';
   loginError: boolean = false;
+
+  hide = signal(true);
+
+  togglePasswordVisibility(event: MouseEvent): void {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
 
   constructor(
     private loginService: LoginService,
@@ -39,6 +52,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
@@ -47,25 +61,31 @@ export class LoginComponent implements OnInit {
     this.loginService.getAccounts().subscribe((data: any) => {
       this.accounts = data;
     });
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    this.username = localStorage.getItem('username') || '';
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      this.login(username, password);
+      const { username, password, email } = this.loginForm.value;
+      this.login(username, password, email);
     } else {
       alert('Por favor complete todos los campos.');
     }
   }
 
-  login(username: string, password: string) {
+  login(username: string, password: string, email: string) {
     const account = this.accounts.find(
-      (acc) => acc.username === username && acc.password === password
+      (acc) =>
+        acc.username === username &&
+        acc.password === password &&
+        acc.email === email
     );
 
     if (account) {
       this.authService.login(username);
       this.isLoggedIn = true;
+      this.username = username;
       this.loginError = false;
     } else {
       this.loginError = true;

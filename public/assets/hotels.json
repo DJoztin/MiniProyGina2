@@ -1,99 +1,110 @@
 [
-    {
-      "nombre": "Hotel Oasis",
-      "descripcion": "Un lugar tranquilo cerca del mar.",
-      "ubicacion": "Cancún, México",
-      "precio": 120,
-      "rating": 4.5,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,resort,1"
-    },
-    {
-      "nombre": "Montaña Viva",
-      "descripcion": "Escápate a las montañas y relájate.",
-      "ubicacion": "Bariloche, Argentina",
-      "precio": 90,
-      "rating": 4.2,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,mountain,2"
-    },
-    {
-      "nombre": "Hotel Central",
-      "descripcion": "En el corazón de la ciudad.",
-      "ubicacion": "Madrid, España",
-      "precio": 150,
-      "rating": 4.8,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,city,3"
-    },
-    {
-      "nombre": "Costa Azul",
-      "descripcion": "Vista directa al mar Mediterráneo.",
-      "ubicacion": "Nice, Francia",
-      "precio": 200,
-      "rating": 4.7,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,beach,4"
-    },
-    {
-      "nombre": "Árbol de Vida",
-      "descripcion": "Eco hotel en medio de la selva.",
-      "ubicacion": "Tulum, México",
-      "precio": 130,
-      "rating": 4.3,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,jungle,5"
-    },
-    {
-      "nombre": "Nieve Eterna",
-      "descripcion": "Ideal para amantes del esquí.",
-      "ubicacion": "Zermatt, Suiza",
-      "precio": 250,
-      "rating": 4.9,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,snow,6"
-    },
-    {
-      "nombre": "Puerta del Sol",
-      "descripcion": "Cerca de todos los sitios históricos.",
-      "ubicacion": "Sevilla, España",
-      "precio": 110,
-      "rating": 4.4,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,city,7"
-    },
-    {
-      "nombre": "Hotel Sakura",
-      "descripcion": "Estilo tradicional japonés.",
-      "ubicacion": "Kyoto, Japón",
-      "precio": 170,
-      "rating": 4.6,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,japan,8"
-    },
-    {
-      "nombre": "Desierto de Estrellas",
-      "descripcion": "Glamping bajo el cielo del desierto.",
-      "ubicacion": "Marrakech, Marruecos",
-      "precio": 140,
-      "rating": 4.2,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,desert,9"
-    },
-    {
-      "nombre": "Aurora Boreal Inn",
-      "descripcion": "Ve las luces del norte desde tu cama.",
-      "ubicacion": "Reikiavik, Islandia",
-      "precio": 220,
-      "rating": 4.9,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,northernlights,10"
-    },
-    {
-      "nombre": "Safari Lodge",
-      "descripcion": "Aventura y confort en la sabana.",
-      "ubicacion": "Nairobi, Kenia",
-      "precio": 190,
-      "rating": 4.6,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,safari,11"
-    },
-    {
-      "nombre": "Atlántico Azul",
-      "descripcion": "Descanso frente al Atlántico.",
-      "ubicacion": "Lisboa, Portugal",
-      "precio": 135,
-      "rating": 4.3,
-      "imagenUrl": "https://source.unsplash.com/featured/?hotel,sea,12"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "nombre": "Hotel Oasis",
+    "descripcion": "Un lugar tranquilo cerca del mar.",
+    "ubicacion": "Cancún, México",
+    "precio": 120,
+    "rating": 4.5,
+    "imagenUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/8a/67/ef/caption.jpg?w=500&h=400&s=1"
+  },
+  {
+    "id": 2,
+    "nombre": "Cerro Fitz Roy",
+    "descripcion": "Escápate a las montañas y relájate.",
+    "ubicacion": "Bariloche, Argentina",
+    "precio": 90,
+    "rating": 4.2,
+    "imagenUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/79/dd/83/laguna-de-los-tres.jpg?w=700&h=400&s=1"
+  },
+  {
+    "id": 3,
+    "nombre": "Hotel Central",
+    "descripcion": "En el corazón de la ciudad.",
+    "ubicacion": "Madrid, España",
+    "precio": 150,
+    "rating": 4.8,
+    "imagenUrl": "https://media.admagazine.com/photos/618a7629a1fa32def58236cf/master/w_320%2Cc_limit/22317.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Costa Azul",
+    "descripcion": "Vista directa al mar Mediterráneo.",
+    "ubicacion": "Nice, Francia",
+    "precio": 200,
+    "rating": 4.7,
+    "imagenUrl": "https://www.etiasvisa.cl/wp-content/uploads/2019/04/14Page-1-Image-1.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Árbol de Vida",
+    "descripcion": "Eco hotel en medio de la selva.",
+    "ubicacion": "Tulum, México",
+    "precio": 130,
+    "rating": 4.3,
+    "imagenUrl": "https://cdn-ilcjiib.nitrocdn.com/mNStTfArBchwOVodMjoqjteoSLbtpVlM/assets/images/optimized/rev-529a34f/plalla.com/wp-content/uploads/2023/09/tulum-plalla-real-estate-1.webp"
+  },
+  {
+    "id": 6,
+    "nombre": "Nieve Eterna",
+    "descripcion": "Ideal para amantes del esquí.",
+    "ubicacion": "Zermatt, Suiza",
+    "precio": 250,
+    "rating": 4.9,
+    "imagenUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/77/10/a0.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Puerta del Sol",
+    "descripcion": "Cerca de todos los sitios históricos.",
+    "ubicacion": "Sevilla, España",
+    "precio": 110,
+    "rating": 4.4,
+    "imagenUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/MADRID_100206_UDCI_023.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Hotel Sakura",
+    "descripcion": "Estilo tradicional japonés.",
+    "ubicacion": "Kyoto, Japón",
+    "precio": 170,
+    "rating": 4.6,
+    "imagenUrl": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/498772909.jpg?k=69fdfcfb9ed374f94020fe30ae765dadd77f7e58c7794276936119d99e85b1e5&o=&hp=1"
+  },
+  {
+    "id": 9,
+    "nombre": "Desierto de Estrellas",
+    "descripcion": "Glamping bajo el cielo del desierto.",
+    "ubicacion": "Marrakech, Marruecos",
+    "precio": 140,
+    "rating": 4.2,
+    "imagenUrl": "https://www.haimaexperience.com/media/noche-en-el-desierto-marruecos-02.webp"
+  },
+  {
+    "id": 10,
+    "nombre": "Aurora Boreal Inn",
+    "descripcion": "Ve las luces del norte desde tu cama.",
+    "ubicacion": "Reikiavik, Islandia",
+    "precio": 220,
+    "rating": 4.9,
+    "imagenUrl": "https://cdn.prod.website-files.com/66c59bb6ecf662630baf4355/66fdc98776ec8decf8606cfd_cuando-viajar-Islandia-aurora-boreal.jpeg"
+  },
+  {
+    "id": 11,
+    "nombre": "Safari Lodge",
+    "descripcion": "Aventura y confort en la sabana.",
+    "ubicacion": "Nairobi, Kenia",
+    "precio": 190,
+    "rating": 4.6,
+    "imagenUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/ae/90/e4/salt-lick-safari-lodge.jpg?w=900&h=500&s=1"
+  },
+  {
+    "id": 12,
+    "nombre": "Atlántico Azul",
+    "descripcion": "Descanso frente al Atlántico.",
+    "ubicacion": "Lisboa, Portugal",
+    "precio": 135,
+    "rating": 4.3,
+    "imagenUrl": "https://atlntico-azul-zero.madeira-islandshotels.com/data/Imgs/OriginalPhoto/15530/1553019/1553019559/img-funchal-madeira-1.JPEG"
+  }
+]
