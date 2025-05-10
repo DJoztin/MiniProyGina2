@@ -1,0 +1,89 @@
+<section class="py-16 px-4 flex justify-center bg-gray-50">
+  <mat-card
+    class="w-full max-w-6xl bg-white shadow-2xl rounded-2xl overflow-hidden"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      <!-- Izquierda: imagen + detalles -->
+      <div class="flex flex-col">
+        <img
+          [src]="hotel.imagenUrl"
+          alt="Imagen del hotel"
+          class="w-full h-64 md:h-80 object-cover"
+        />
+        <div class="px-6 py-4">
+          <h2 class="text-2xl font-bold text-gray-800 mb-3">
+            {{ hotel.nombre }}
+          </h2>
+          <div class="text-gray-700 space-y-1 text-base">
+            <p><span class="font-medium">Name:</span> {{ hotel.nombre }}</p>
+            <p>
+              <span class="font-medium">Location:</span> {{ hotel.ubicacion }}
+            </p>
+            <p><span class="font-medium">Rating:</span> {{ hotel.rating }}</p>
+            <p>
+              <span class="font-medium">Description:</span>
+              {{ hotel.descripcion }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Derecha: formulario -->
+      <div class="p-6 border-t md:border-t-0 md:border-l border-gray-200">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">
+          Reservar habitación
+        </h3>
+        <form>
+          <mat-form-field appearance="fill" class="w-full mb-4">
+            <mat-label>Nombre completo</mat-label>
+            <input matInput formControlName="nombre" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="w-full mb-4">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput type="email" formControlName="email" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="w-full mb-4">
+            <mat-label>Fecha de llegada</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              formControlName="fechaLlegada"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="w-full mb-4">
+            <mat-label>Fecha de salida</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              formControlName="fechaSalida"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="w-full mt-4"
+            type="submit"
+          >
+            Confirmar reserva
+          </button>
+        </form>
+      </div>
+    </div>
+  </mat-card>
+</section>

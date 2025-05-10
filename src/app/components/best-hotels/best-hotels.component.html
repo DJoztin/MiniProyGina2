@@ -29,7 +29,13 @@
     </mat-card-content>
 
     <mat-card-actions class="flex justify-end">
-      <button mat-raised-button color="primary">Reservar</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/hotel', hotel.id - 1]"
+      >
+        Reservar
+      </button>
     </mat-card-actions>
   </mat-card>
   }

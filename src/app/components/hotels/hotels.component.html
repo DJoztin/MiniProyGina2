@@ -9,13 +9,18 @@
 
 <section class="flex flex-wrap justify-evenly px-6 py-4 gap-4 min-h-77">
   @if (hotels.length == 0) {
-    <div class="text-center w-full mb-5">
-      <h3 class="text-2xl">No hay resultados de tu busqueda</h3>
-    </div>
-  }@else {
-  @for (hotel of hotels; track $index) {
-  <mat-card class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-white shadow-md rounded-2xl overflow-hidden">
-    <img [src]="hotel.imagenUrl" alt="Imagen del hotel" class="w-full h-48 object-cover" />
+  <div class="text-center w-full mb-5">
+    <h3 class="text-2xl">No hay resultados de tu busqueda</h3>
+  </div>
+  }@else { @for (hotel of hotels; track $index; let i = $index) {
+  <mat-card
+    class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-white shadow-md rounded-2xl overflow-hidden"
+  >
+    <img
+      [src]="hotel.imagenUrl"
+      alt="Imagen del hotel"
+      class="w-full h-48 object-cover"
+    />
 
     <mat-card-header>
       <mat-card-title class="text-xl font-semibold text-gray-800">
@@ -35,9 +40,14 @@
     </mat-card-content>
 
     <mat-card-actions class="flex justify-end">
-      <button mat-raised-button color="primary">Reservar</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/hotel', hotel.id - 1]"
+      >
+        Reservar
+      </button>
     </mat-card-actions>
   </mat-card>
-  }
-  }
+  } }
 </section>

@@ -3,6 +3,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { HotelsComponent } from './components/hotels/hotels.component';
+import { HotelComponent } from './components/hotel/hotel.component';
 
 export const routes: Routes = [
   {
@@ -25,10 +26,13 @@ export const routes: Routes = [
   {
     path: 'logout',
     component: LoginComponent,
-    // Add logic to handle logout in the LoginComponent
   },
   {
     path: 'hotels',
     component: HotelsComponent,
+  },
+  {
+    path: 'hotel/:id',
+    component: HotelComponent,
   },
 ];
