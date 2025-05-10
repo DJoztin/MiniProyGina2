@@ -93,6 +93,7 @@
   } @else {
   <div class="text-center">
     <h2 class="text-2xl font-semibold mb-4">¡Bienvenido, {{ username }}!</h2>
+    <a routerLink="/admin" mat-button color="warn" >Ir al panel de administracion</a>
     <button mat-button color="warn" (click)="logout()">Cerrar sesión</button>
   </div>
   }

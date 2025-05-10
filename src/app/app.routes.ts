@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HotelsComponent } from './components/hotels/hotels.component';
 import { HotelComponent } from './components/hotel/hotel.component';
 import { ExtraviosComponent } from './extravios/extravios.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 export const routes: Routes = [
   {
@@ -40,4 +41,8 @@ export const routes: Routes = [
     path: 'hotel/:id',
     component: HotelComponent,
   },
+  {
+    path: 'admin',
+    component: AdminPanelComponent,
+  }
 ];
