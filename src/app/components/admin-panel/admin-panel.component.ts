@@ -98,99 +98,23 @@ export class AdminPanelComponent {
 
   addNew(type: string): void {
     console.log(type);
-    if (type === this.reservType) 
-      this.handleNewRsv();
-    else
-      this.handleNewLost();
-
+    
+    // Se abre el formulario con data null porque es para agregar un nuevo registro
+    this.openForm(type, null);
   }
 
-  handleNewRsv(){
-    const title = "reservacion"
-    // Swal con formulario para llenar la informacion y generar un nuevo registro
-    Swal.fire({
-      title: `Agregar Nueva ${title}`,
-      html: `
-      <form id="addForm">
-        <label for="hotel" class="block text-left mb-2 ">Hotel:</label>
-        <input id="hotel" type="text" class="swal2-input " placeholder="Ingrese el hotel">
-        
-        <label for="nombre" class="block text-left mb-2">Nombre:</label>
-        <input id="nombre" type="text" class="swal2-input" placeholder="Ingrese el nombre del huesped">
-        
-        <label for="checkin" class="block text-left mb-2">Fecha de ingreso:</label>
-        <input id="checkin" type="date" class="swal2-input">
 
-        <label for="checkout" class="block text-left mb-2">Fecha de egreso:</label>
-        <input id="checkout" type="date" class="swal2-input">
-      </form>
-    `,
-      showCancelButton: true,
-      confirmButtonText: 'Guardar',
-      cancelButtonText: 'Cancelar',
-      preConfirm: () => {
-        const input1 = (document.getElementById('hotel') as HTMLInputElement).value;
-        const input2 = (document.getElementById('nombre') as HTMLInputElement).value;
-        const inputDate1= (document.getElementById('checkin') as HTMLInputElement).value;
-        const inputDate2 = (document.getElementById('checkout') as HTMLInputElement).value;
+  openForm(type:string, data: any){
 
-        if (!input1 || !input2 || !inputDate1 || !input2) {
-          Swal.showValidationMessage('Todos los campos son obligatorios');
-          return null;
-        }
-
-        return { input1, input2, inputDate1, inputDate2 };
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log('Datos ingresados:', result.value);
-        // Aquí puedes manejar los datos ingresados, por ejemplo, guardarlos en un array o enviarlos a un servicio
-      }
-    });
-  }
-  
-  handleNewLost(){
-    const title = "cosa perdida"
-    // Swal con formulario para llenar la informacion y generar un nuevo registro
-    Swal.fire({
-      title: `Agregar Nueva ${title}`,
-      html: `
-      <form id="addForm">
-        <label for="nombre" class="block text-left mb-2 ">Nombre:</label>
-        <input id="nombre" type="text" class="swal2-input " placeholder="Ingrese el nombre del huesped">
-        
-        <label for="object" class="block text-left mb-2">Objeto:</label>
-        <input id="object" type="text" class="swal2-input" placeholder="Ingrese el nombre del objeto perdido">
-        
-        <label for="inputDate" class="block text-left mb-2">Fecha de la perdida:</label>
-        <input id="inputDate" type="date" class="swal2-input">
-      </form>
-    `,
-      showCancelButton: true,
-      confirmButtonText: 'Guardar',
-      cancelButtonText: 'Cancelar',
-      preConfirm: () => {
-        const input1 = (document.getElementById('input1') as HTMLInputElement).value;
-        const input2 = (document.getElementById('input2') as HTMLInputElement).value;
-        const inputDate = (document.getElementById('inputDate') as HTMLInputElement).value;
-
-        if (!input1 || !input2 || !inputDate) {
-          Swal.showValidationMessage('Todos los campos son obligatorios');
-          return null;
-        }
-
-        return { input1, input2, inputDate };
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log('Datos ingresados:', result.value);
-        // Aquí puedes manejar los datos ingresados, por ejemplo, guardarlos en un array o enviarlos a un servicio
-      }
-    });
   }
 
   edit(type: string, id: number) {
-    // Swal con formulario con los datos actuales del item a modificar
+    console.log(type, id);
+
+    // Se tiene que conseguir el objeto que se quiere editar del arreglo correspondiente y mandarlo a open form como data
+    const data = (type === this.reservType) ? this.reservations[id] : this.lostItemType[id];
+    console.log(data);
+    this.openForm(type, data);
   }
 
   delete(type: string, id: number) {
