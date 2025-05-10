@@ -8,10 +8,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { BookingService } from '../../services/booking.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-hotel',
   imports: [
+    FormsModule,
     RouterModule,
     MatCardModule,
     MatButtonModule,
@@ -25,12 +28,26 @@ import { MatNativeDateModule } from '@angular/material/core';
 })
 export class HotelComponent {
   hotel!: Hotel;
+  reserva = {
+    nombre: '',
+    email: '',
+    fechaEntrada: '',
+    fechaSalida: '',
+    hotel: ''
+  };
   constructor(
     public hotelsService: HotelsService,
+    public bookingService: BookingService,
     public activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.params.subscribe((params) => {
       this.hotel = this.hotelsService.getHotel(params['id']);
     });
+  }
+
+  reservar() {
+    console.log("aaaa");
+    console.log(this.reserva);
+    this.bookingService.agregarReserva(this.reserva);
   }
 }

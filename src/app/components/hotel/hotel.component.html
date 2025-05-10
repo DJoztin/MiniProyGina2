@@ -36,21 +36,22 @@
         <form>
           <mat-form-field appearance="fill" class="w-full mb-4">
             <mat-label>Nombre completo</mat-label>
-            <input matInput formControlName="nombre" required />
+            <input [(ngModel)]="reserva.nombre" name="nombre" matInput required />
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="w-full mb-4">
             <mat-label>Correo electrónico</mat-label>
-            <input matInput type="email" formControlName="email" required />
+            <input [(ngModel)]="reserva.email" name="email" matInput type="email" required />
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="w-full mb-4">
             <mat-label>Fecha de llegada</mat-label>
             <input
+             [(ngModel)]="reserva.fechaEntrada"
               matInput
               [matDatepicker]="picker1"
-              formControlName="fechaLlegada"
               required
+              name="fechaEntrada"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -62,10 +63,11 @@
           <mat-form-field appearance="fill" class="w-full mb-4">
             <mat-label>Fecha de salida</mat-label>
             <input
+              [(ngModel)]="reserva.fechaSalida"
               matInput
               [matDatepicker]="picker2"
-              formControlName="fechaSalida"
               required
+              name="fechaSalida"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -78,7 +80,8 @@
             mat-raised-button
             color="primary"
             class="w-full mt-4"
-            type="submit"
+            (click)="reservar()"
+            type="button"
           >
             Confirmar reserva
           </button>
