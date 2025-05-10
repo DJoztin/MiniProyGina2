@@ -11,4 +11,5 @@ export class HotelsService {
   getHotels() {
     return this.http.get('/assets/hotels.json').pipe(take(1));
   }
+
 }
