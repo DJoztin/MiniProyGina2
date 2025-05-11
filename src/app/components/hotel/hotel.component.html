@@ -30,7 +30,7 @@
 
       <!-- Derecha: formulario -->
       <div class="p-6 border-t md:border-t-0 md:border-l border-gray-200">
-        <app-form-reservacion [title]="'Reservar Habitacion'" (sendForm)="reservar($event)"></app-form-reservacion>
+        <app-form-reservacion [title]="'Reservar Habitacion en ' + hotel.nombre" (sendForm)="reservar($event)"></app-form-reservacion>
       </div>
     </div>
   </mat-card>

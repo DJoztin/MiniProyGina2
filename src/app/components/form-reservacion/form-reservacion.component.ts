@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { Reservation } from '../../models/reservation';
 import Swal from 'sweetalert2';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-form-reservacion',
   imports: [
@@ -22,19 +24,22 @@ import { provideNativeDateAdapter } from '@angular/material/core';
   ],
   templateUrl: './form-reservacion.component.html',
   styleUrl: './form-reservacion.component.css',
-  providers: [provideNativeDateAdapter()] 
+  providers: [provideNativeDateAdapter(), DatePipe] 
 })
 export class FormReservacionComponent {
   @Input() title: string = '';
   @Input() data!: Reservation;
   @Output() sendForm: EventEmitter<Reservation> = new EventEmitter<Reservation>;
   @Input() isOnAdminPanel: boolean = false;
+  router = inject(Router);
   nombre: string = "";
   email: string = "";
   fechaEntrada: string = "";
   fechaSalida: string = "";
   hotel: string = "";
+  hoy = new Date();
 
+  constructor(public datePipe: DatePipe) {}
 
   confirmarReserva(): void {
     if (!this.nombre || !this.fechaEntrada || !this.fechaSalida || !this.email) {
@@ -55,13 +60,20 @@ export class FormReservacionComponent {
         let reservation: Reservation = {
           nombre: this.nombre,
           email: this.email,
-          fechaEntrada: this.fechaEntrada,
-          fechaSalida: this.fechaSalida,
+          fechaEntrada: this.datePipe.transform(this.fechaEntrada, 'dd/MM/yyyy')!,
+          fechaSalida: this.datePipe.transform(this.fechaSalida, 'dd/MM/yyyy')!,
           hotel: this.hotel,
           id: (this.data) ? this.data.id : 0,
         };
         this.sendForm.emit(reservation)
-        this.clearForm();
+        Swal.fire({
+          title: "Felicidades!",
+          icon: "success",
+          text: "Reservación realizada con éxito para " + reservation.hotel +".",
+        }).then(() => {
+          this.clearForm();
+          this.router.navigate(['/home']);
+        });
       }
     })
 
@@ -85,4 +97,8 @@ export class FormReservacionComponent {
     this.fechaEntrada= "";
     this.fechaSalida= "";
   }
+
+  get emailInvalido(): boolean {
+    return !!this.email && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.email);
+}
 }
