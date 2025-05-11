@@ -10,21 +10,23 @@ export class ExtraviosService {
 
 
   constructor() {
-    this.objetos = JSON.parse(localStorage.getItem('data') || '[]');
-   }
+    const data = localStorage.getItem('objetosPerdidos');
+    this.objetos = data ? JSON.parse(data) : [];
+  }
 
-   getObjetos(){
-    return this.objetos;
-   }
+   obtenerObjetos(): Objeto[] {
+    const data = localStorage.getItem('objetosPerdidos');
+    return data ? JSON.parse(data) : [];
+  }
+    agregarObjeto(obj: Objeto): void {
+    this.objetos.push(obj);
+    localStorage.setItem('objetosPerdidos', JSON.stringify(this.objetos));
+  }
 
-   agregarObjeto(objeto: Objeto){
-    this.objetos.push(objeto);
-    localStorage.setItem('data', JSON.stringify(this.objetos));
-   }
 
-   nuevoObjeto(objeto: Objeto){
+   nuevoObjeto(): Objeto{
     return{
-      id:this.objetos.length + 1,
+      id:this.objetos.length,
       email: '',
       ubicacion: '',
       fecha: '',
