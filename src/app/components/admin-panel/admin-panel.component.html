@@ -33,7 +33,7 @@
                     <td class="border border-gray-300 px-4 py-2">{{reserv.fechaEntrada}}</td>
                     <td class="border border-gray-300 px-4 py-2">{{reserv.fechaSalida}}</td>
                     <td class="border border-gray-300 px-4 py-2 ">
-                        <a (click)="edit(reservType, reserv.id)" class="icon-button mx-1 cursor-pointer">
+                        <a (click)="openEditModal(reservType, reserv.id)" class="icon-button mx-1 cursor-pointer">
                             <fa-icon class="hover:text-secondary transition-colors duration-200"
                                 [icon]="editIcon"></fa-icon>
                         </a>
@@ -48,7 +48,7 @@
             </tbody>
         </table>
         }
-        <button (click)="addNew(reservType)"
+        <button (click)="openNewModal(reservType)"
             class="group flex items-center justify-between w-10 h-10 px-[11px] mt-4 cursor-pointer border border-gray-400 rounded-full bg-gray-200 hover:w-35 hover:bg-gray-300 transition-all duration-300 ">
             <fa-icon class="group-hover:text-secondary" [icon]="addIcon"></fa-icon>
             <span
@@ -82,7 +82,7 @@
                     <td class="border border-gray-300 px-4 py-2">{{item.objeto}}</td>
                     <td class="border border-gray-300 px-4 py-2">{{item.fechaPerdido}}</td>
                     <td class="border border-gray-300 px-4 py-2 ">
-                        <a (click)="edit(lostItemType, i)" class="icon-button mx-1 cursor-pointer">
+                        <a (click)="openEditModal(lostItemType, i)" class="icon-button mx-1 cursor-pointer">
                             <fa-icon class="hover:text-secondary transition-colors duration-200"
                                 [icon]="editIcon"></fa-icon>
                         </a>
@@ -97,7 +97,7 @@
             </tbody>
         </table>
         }
-        <button (click)="addNew(lostItemType)"
+        <button (click)="openNewModal(lostItemType)"
             class="group flex items-center justify-between w-10 h-10 px-[11px] mt-4 cursor-pointer border border-gray-400 rounded-full bg-gray-200 hover:w-35 hover:bg-gray-300 transition-all duration-300 ">
             <fa-icon class="group-hover:text-secondary" [icon]="addIcon"></fa-icon>
             <span

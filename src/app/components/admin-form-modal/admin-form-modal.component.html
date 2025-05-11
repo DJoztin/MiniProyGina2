@@ -1,8 +1,8 @@
 <h2 mat-dialog-title>{{ type === 'reserv' ? 'Reservación' : 'Cosa perdida' }}</h2>
 <mat-dialog-content>
 
-  <ng-container *ngIf="type === 'reserv'">
-    <!-- <app-reservacion-form [data]="data" (formSubmit)="onSubmit($event)"></app-reservacion-form> -->
+  <ng-container *ngIf="type === 'reserv'" class="my-3">
+    <app-form-reservacion [title]="title" [data]="data" [isOnAdminPanel]="true" (sendForm)="onSubmit($event)"></app-form-reservacion>
   </ng-container>
 
   <ng-container *ngIf="type === 'item'">
@@ -11,5 +11,5 @@
 
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancelar</button>
+  <button class="px-5 py-2 bg-red-50 rounded-full text-red-700  hover:bg-red-100 font-bold" mat-button mat-dialog-close>Cancelar</button>
 </mat-dialog-actions>

@@ -1,14 +1,15 @@
-import { Component, resource } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPencilAlt, faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faL, faPencilAlt, faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { Reservation } from '../../models/reservation';
 import { BookingService } from '../../services/booking.service';
 import Swal from 'sweetalert2';
+import { AdminFormModalComponent } from '../admin-form-modal/admin-form-modal.component';
 
 
 
@@ -82,26 +83,60 @@ export class AdminPanelComponent {
     this.router.navigate(['/']);
   }
 
-  addNew(type: string): void {
+  // Funcion para agarrar los datos de los dos servicios, rsv y cosas perdidas, si estos devolvieran observables esta funcion
+  // se podria ahorrar pero como no lo hacen es mejor asi
+  fetchData(): void {
+    this.reservations = this.reservService.getReservas();
+  }
+
+  openNewModal(type: string): void {
     console.log(type);
 
     // Se abre el formulario con data null porque es para agregar un nuevo registro
-    this.openForm(type, null);
+    this.openForm(type, null, false);
   }
 
-
-  openForm(type: string, data: any) {
-
-  }
-
-  edit(type: string, id: number) {
+  openEditModal(type: string, id: number) {
     console.log(type, id);
 
     // Se tiene que conseguir el objeto que se quiere editar del arreglo correspondiente y mandarlo a open form como data
-    const data = (type === this.reservType) ? this.reservations[id] : this.lostItemType[id];
+    const data = (type === this.reservType) ? this.reservations[id - 1] : this.lostItemType[id - 1];
     console.log(data);
     this.openForm(type, data);
   }
+
+
+  openForm(type: string, data: any = null, isEditing: boolean = true) {
+    const dialogRef = this.dialog.open(AdminFormModalComponent, {
+      data: { type, data },
+      autoFocus: false,
+      restoreFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Datos recibidos: ', result);
+        if(type == this.reservType){
+          if(!isEditing){
+            // Creacion de nueva reservacion
+            this.reservService.agregarReserva(result);
+          }else{
+            // Edicion de una reservacion
+            this.reservService.editReserva(result);
+          }
+        } else{
+          if(!isEditing){
+            // Creacion de un nuevo objeto perdido
+          }else{
+            // Edicion de un objeto perdido
+          }
+        }
+
+        this.fetchData();
+      }
+    })
+  }
+
 
   async showModalDelete(type: string, id: number) {
     // Swal para confirmar el borrado, despues proceder
@@ -138,9 +173,12 @@ export class AdminPanelComponent {
     }
   }
 
-  // Funcion para agarrar los datos de los dos servicios, rsv y cosas perdidas, si estos devolvieran observables esta funcion
-  // se podria ahorrar pero como no lo hacen es mejor asi
-  fetchData(): void {
-    this.reservations = this.reservService.getReservas();
+  createNew(type: string, data: any){
+
   }
+
+  edit(type: string, data:any){
+
+  }
+
 }

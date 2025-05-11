@@ -10,3 +10,7 @@
 :root {
   scrollbar-width: none;
 }
+
+.cdk-overlay-container {
+  z-index: 1000; 
+}

@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Reservation } from '../../models/reservation';
 import Swal from 'sweetalert2';
-
+import { provideNativeDateAdapter } from '@angular/material/core';
 @Component({
   selector: 'app-form-reservacion',
   imports: [
@@ -21,15 +21,19 @@ import Swal from 'sweetalert2';
     MatNativeDateModule,
   ],
   templateUrl: './form-reservacion.component.html',
-  styleUrl: './form-reservacion.component.css'
+  styleUrl: './form-reservacion.component.css',
+  providers: [provideNativeDateAdapter()] 
 })
 export class FormReservacionComponent {
   @Input() title: string = '';
+  @Input() data!: Reservation;
   @Output() sendForm: EventEmitter<Reservation> = new EventEmitter<Reservation>;
+  @Input() isOnAdminPanel: boolean = false;
   nombre: string = "";
   email: string = "";
   fechaEntrada: string = "";
   fechaSalida: string = "";
+  hotel: string = "";
 
 
   confirmarReserva(): void {
@@ -53,14 +57,26 @@ export class FormReservacionComponent {
           email: this.email,
           fechaEntrada: this.fechaEntrada,
           fechaSalida: this.fechaSalida,
-          id: 0,
-          hotel: ""
+          hotel: this.hotel,
+          id: (this.data) ? this.data.id : 0,
         };
         this.sendForm.emit(reservation)
         this.clearForm();
       }
     })
 
+  }
+
+  ngOnInit(){
+    if(this.data){
+      this.clearForm()
+      //Se paso como edicion
+      this.hotel = this.data.hotel;
+      this.nombre = this.data.nombre;
+      this.email = this.data.email;
+      this.fechaEntrada = this.data.fechaEntrada;
+      this.fechaSalida = this.data.fechaSalida;
+    }
   }
 
   clearForm(): void {
