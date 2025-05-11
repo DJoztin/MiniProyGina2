@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,10 +34,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./extravios.component.css']
 })
 export class ExtraviosComponent {
+  @Input() title: string = "Solicitar ticket";
+  @Input() data: any;
+  @Input() isOnAdminPanel: boolean = false;
+  @Output() sendForm: EventEmitter<Objeto> = new EventEmitter<Objeto>;
+
   objeto!: Objeto;
   form: FormGroup;
   tipos = ['Documento', 'Llaves', 'Celular', 'Ropa', 'Otro'];
   lost: string = 'assets/img/lost.webp';
+
+
+
   constructor(private fb: FormBuilder, private extraviosService: ExtraviosService) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -51,7 +59,14 @@ export class ExtraviosComponent {
   }
 
   ngOnInit() {
-    this.objeto = this.extraviosService.nuevoObjeto();
+    if(this.data){
+      // Edicion, se llena los datos que ya estaban
+      this.objeto = this.data;
+    }else{
+      // Si esta creando desde 0, se manda a llamar al servicio
+      this.objeto = this.extraviosService.nuevoObjeto();
+    }
+
   }
 
   nuevoObjeto(): void {
@@ -65,7 +80,6 @@ export class ExtraviosComponent {
         : 1;
         objetoForm.id = nuevoId;
         objetoForm.fecha = fecha;
-        this.extraviosService.agregarObjeto(objetoForm);
         Swal.fire({
           title: '¡Éxito!',
           color: '#f0f0f0',
@@ -75,6 +89,12 @@ export class ExtraviosComponent {
           confirmButtonText: 'Aceptar'
         });
         this.form.reset();
+        if(!this.isOnAdminPanel){
+          // Si no esta en el admin panel manda llamar al servicio nomral, si esta en admin se manda el output
+          this.extraviosService.agregarObjeto(objetoForm);
+        } else{
+          this.sendForm.emit(objetoForm);
+        }
       }
   }
 

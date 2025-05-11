@@ -5,6 +5,7 @@ import { FormReservacionComponent } from "../form-reservacion/form-reservacion.c
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { ExtraviosComponent } from "../extravios/extravios.component";
 
 @Component({
   selector: 'app-admin-form-modal',
@@ -13,8 +14,9 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatDialogModule,
     FormReservacionComponent,
     MatNativeDateModule,
-    MatDatepickerModule
-  ],
+    MatDatepickerModule,
+    ExtraviosComponent
+],
   templateUrl: './admin-form-modal.component.html',
   styleUrl: './admin-form-modal.component.css',
   providers: [provideNativeDateAdapter()] 

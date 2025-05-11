@@ -6,7 +6,7 @@
   </ng-container>
 
   <ng-container *ngIf="type === 'item'">
-    <!-- <app-objeto-perdido-form [data]="data" (formSubmit)="onSubmit($event)"></app-objeto-perdido-form> -->
+    <app-extravios [title]="title" [data]="data" [isOnAdminPanel]="true" (sendForm)="onSubmit($event)"></app-extravios>
   </ng-container>
 
 </mat-dialog-content>
