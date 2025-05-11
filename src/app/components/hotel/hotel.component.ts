@@ -51,5 +51,18 @@ export class HotelComponent {
   reservar() {
     // TODO: tratar bien la date para que se guarde lindo en el localstorage
     this.bookingService.agregarReserva(this.reserva);
+    // Limpiar los valores q se tenian
+    this.clearReservation();
+  }
+
+  clearReservation(): void {
+    this.reserva = {
+      id: 0,
+      nombre: '',
+      email: '',
+      fechaEntrada: '',
+      fechaSalida: '',
+      hotel: ''
+    };
   }
 }

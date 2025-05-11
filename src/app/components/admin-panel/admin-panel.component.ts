@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, resource } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -8,6 +8,7 @@ import { faPencilAlt, faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-s
 import { MatDialog } from '@angular/material/dialog';
 import { Reservation } from '../../models/reservation';
 import { BookingService } from '../../services/booking.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -50,16 +51,18 @@ export class AdminPanelComponent {
 
   reservations: Reservation[] = [];
 
-  constructor(private authService: AuthService, private router: Router, 
+  constructor(private authService: AuthService, private router: Router,
     private loginService: LoginService, private dialog: MatDialog, private reservService: BookingService) {
-      this.reservations = reservService.getReservas();
-    }
+  }
 
   editIcon = faPencilAlt;
   deleteIcon = faTrashAlt;
   addIcon = faPlusCircle;
 
   ngOnInit() {
+    // Tomar los datos de los servicios
+
+    this.fetchData();
     // Si no esta logueado, no puede estar aqui, se redirecciona al Loguin
     this.authService.loggedIn$.subscribe((status) => {
       this.isLoggedIn = status;
@@ -81,13 +84,13 @@ export class AdminPanelComponent {
 
   addNew(type: string): void {
     console.log(type);
-    
+
     // Se abre el formulario con data null porque es para agregar un nuevo registro
     this.openForm(type, null);
   }
 
 
-  openForm(type:string, data: any){
+  openForm(type: string, data: any) {
 
   }
 
@@ -100,8 +103,44 @@ export class AdminPanelComponent {
     this.openForm(type, data);
   }
 
-  delete(type: string, id: number) {
+  async showModalDelete(type: string, id: number) {
     // Swal para confirmar el borrado, despues proceder
+    const response = await Swal.fire({
+      title: "Seguro que quieres eliminar este registro?",
+      text: "Esta accion no se puede deshacer",
+      showCancelButton: true,
+      showConfirmButton: true
+    });
 
+    if (response.isConfirmed) {
+      this.delete(type, id);
+    }
+
+  }
+
+  delete(type: string, id: number) {
+    // IMPORTANT TODO!!!: Cambiar el else del operador ternario por el metodo de borrar cosa perdida
+    // Llamar a servicio correspondiente y borrar registro, devuelve true si sale bien, si no sale bien devuelve false
+    let result: boolean = (type === this.reservType) ? this.reservService.deleteReserva(id) : this.reservService.deleteReserva(id);
+    // Swal de confirmacion o error
+    if (result) {
+      Swal.fire({
+        icon: "success",
+        text: "El registro fue borrado con Exito",
+      });
+      // Actalizar el array de datos ya que se modificaron
+      this.fetchData();
+    } else {
+      Swal.fire({
+        icon: "error",
+        text: "Ocurrio un error durante el eliminado del registro",
+      })
+    }
+  }
+
+  // Funcion para agarrar los datos de los dos servicios, rsv y cosas perdidas, si estos devolvieran observables esta funcion
+  // se podria ahorrar pero como no lo hacen es mejor asi
+  fetchData(): void {
+    this.reservations = this.reservService.getReservas();
   }
 }

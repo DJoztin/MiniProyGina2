@@ -37,7 +37,7 @@
                             <fa-icon class="hover:text-secondary transition-colors duration-200"
                                 [icon]="editIcon"></fa-icon>
                         </a>
-                        <a (click)="delete(reservType, reserv.id)" class="icon-button mx-1 cursor-pointer">
+                        <a (click)="showModalDelete(reservType, reserv.id)" class="icon-button mx-1 cursor-pointer">
                             <fa-icon class="hover:text-secondary transition-colors duration-200"
                                 [icon]="deleteIcon"></fa-icon>
                         </a>
@@ -86,7 +86,7 @@
                             <fa-icon class="hover:text-secondary transition-colors duration-200"
                                 [icon]="editIcon"></fa-icon>
                         </a>
-                        <a (click)="delete(lostItemType, i)" class="icon-button mx-1 cursor-pointer">
+                        <a (click)="showModalDelete(lostItemType, i)" class="icon-button mx-1 cursor-pointer">
                             <fa-icon class="hover:text-secondary transition-colors duration-200"
                                 [icon]="deleteIcon"></fa-icon>
                         </a>

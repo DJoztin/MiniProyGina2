@@ -15,9 +15,25 @@ export class BookingService {
   }
 
   agregarReserva(reserva: Reservation): void {
-    reserva.id = this.reservas.length + 1;
+    // Sacar el id del componente que sera = el ultimo id que se tiene + 1
+    reserva.id = (this.reservas.length === 0) ? 1 : this.reservas[this.reservas.length - 1].id + 1;
     this.reservas.push(reserva);
-    localStorage.setItem('reservas', JSON.stringify(this.reservas));
+    this.saveToLocalStorage();
+  }
+  
+  deleteReserva(idReserva: number): boolean{
+    const rsv = this.reservas.find(rsv => rsv.id == idReserva)
+    if(rsv){
+      this.reservas.splice(this.reservas.indexOf(rsv),1);
+      this.saveToLocalStorage();
+      return true;
+    } else{
+      // Si no existe la reserva develve false de que hubo error
+      return false;
+    }
   }
 
+  saveToLocalStorage(): void{
+      localStorage.setItem('reservas', JSON.stringify(this.reservas));
+  }
 }
