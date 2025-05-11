@@ -79,8 +79,9 @@ export function fechaNoPasadaValidator(control: AbstractControl): ValidationErro
   if (!valor) return null;
 
   const fechaIngresada = new Date(valor);
-  const hoy = new Date();
-  hoy.setHours(0, 0, 0, 0);
+  const semanaAtras = new Date();
+  semanaAtras.setDate(semanaAtras.getDate() - 7);
+  semanaAtras.setHours(0, 0, 0, 0);
 
-  return fechaIngresada < hoy ? { fechaPasada: true } : null;
+  return fechaIngresada < semanaAtras ? { fechaPasada: true } : null;
 }
