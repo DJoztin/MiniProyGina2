@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -8,7 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { MatOptionModule } from '@angular/material/core'; 
+import { MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { Objeto } from '../../models/objetos';
@@ -59,10 +59,19 @@ export class ExtraviosComponent {
   }
 
   ngOnInit() {
-    if(this.data){
+    console.log(this.data);
+    if (this.data) {
       // Edicion, se llena los datos que ya estaban
-      this.objeto = this.data;
-    }else{
+      this.form.patchValue({
+        email: this.data.email,
+        ubicacion: this.data.ubicacion,
+        fecha: this.data.fecha,
+        tipo: this.data.tipo,
+        descripcion: this.data.descripcion,
+        aceptarTerminos: this.data.aceptarTerminos,
+      })
+
+    } else {
       // Si esta creando desde 0, se manda a llamar al servicio
       this.objeto = this.extraviosService.nuevoObjeto();
     }
@@ -70,36 +79,39 @@ export class ExtraviosComponent {
   }
 
   nuevoObjeto(): void {
-      if (this.form.valid) {
-        const objetoForm = this.form.value;
-        const fecha = objetoForm.fecha instanceof Date
+    if (this.form.valid) {
+      const objetoForm = this.form.value;
+      const fecha = objetoForm.fecha instanceof Date
         ? objetoForm.fecha.toISOString().split('T')[0]
         : objetoForm.fecha;
-        const nuevoId = this.extraviosService.obtenerObjetos().length > 0
+
+      // No preguntes solo Gozalo
+      //  Ntc, primero, si estaba editando solo agarra el id que ya tenia, si es nuevo y es el primer elemento en el localStorage
+      //  agarra el id uno, si es nuevo y no es el primer elemento agarra el id mayor del local y le suma 1
+      objetoForm.id = (!this.data) ? this.extraviosService.obtenerObjetos().length > 0
         ? Math.max(...this.extraviosService.obtenerObjetos().map(o => o.id)) + 1
-        : 1;
-        objetoForm.id = nuevoId;
-        objetoForm.fecha = fecha;
-        Swal.fire({
-          title: '¡Éxito!',
-          color: '#f0f0f0',
-          background: '#2d2d2d',
-          text: 'Su ticket ha sido registrado correctamente.',
-          icon: 'success',
-          confirmButtonText: 'Aceptar'
-        });
-        this.form.reset();
-        if(!this.isOnAdminPanel){
-          // Si no esta en el admin panel manda llamar al servicio nomral, si esta en admin se manda el output
-          this.extraviosService.agregarObjeto(objetoForm);
-        } else{
-          this.sendForm.emit(objetoForm);
-        }
+        : 1 : this.data.id;
+      objetoForm.fecha = fecha;
+      Swal.fire({
+        title: '¡Éxito!',
+        color: '#f0f0f0',
+        background: '#2d2d2d',
+        text: 'Su ticket ha sido registrado correctamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+      this.form.reset();
+      if (!this.isOnAdminPanel) {
+        // Si no esta en el admin panel manda llamar al servicio nomral, si esta en admin se manda el output
+        this.extraviosService.agregarObjeto(objetoForm);
+      } else {
+        this.sendForm.emit(objetoForm);
       }
+    }
   }
 
 
-  
+
 }
 
 export function fechaNoPasadaValidator(control: AbstractControl): ValidationErrors | null {

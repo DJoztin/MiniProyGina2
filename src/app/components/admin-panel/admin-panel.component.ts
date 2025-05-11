@@ -76,7 +76,8 @@ export class AdminPanelComponent {
     console.log(type, id);
 
     // Se tiene que conseguir el objeto que se quiere editar del arreglo correspondiente y mandarlo a open form como data
-    const data = (type === this.reservType) ? this.reservations[id - 1] : this.lostItemType[id - 1];
+    const data = (type === this.reservType) ? this.reservations.find(aux => aux.id === id) : this.lostItems.find(aux => aux.id === id);
+
     console.log(data);
     this.openForm(type, data);
   }
@@ -134,7 +135,7 @@ export class AdminPanelComponent {
   delete(type: string, id: number) {
     // IMPORTANT TODO!!!: Cambiar el else del operador ternario por el metodo de borrar cosa perdida
     // Llamar a servicio correspondiente y borrar registro, devuelve true si sale bien, si no sale bien devuelve false
-    let result: boolean = (type === this.reservType) ? this.reservService.deleteReserva(id) : this.reservService.deleteReserva(id);
+    let result: boolean = (type === this.reservType) ? this.reservService.deleteReserva(id) :  this.lostObjService.deleteObjeto(id);
     // Swal de confirmacion o error
     if (result) {
       Swal.fire({
