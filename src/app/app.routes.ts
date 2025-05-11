@@ -6,6 +6,7 @@ import { HotelsComponent } from './components/hotels/hotels.component';
 import { HotelComponent } from './components/hotel/hotel.component';
 import { ExtraviosComponent } from './components/extravios/extravios.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { CreditsComponent } from './credits/credits.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,10 @@ export const routes: Routes = [
   {
     path: 'extravios',
     component: ExtraviosComponent,
+  },
+  {
+    path: 'credits',
+    component: CreditsComponent,
   },
   {
     path: 'login',

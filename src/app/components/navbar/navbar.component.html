@@ -16,9 +16,9 @@
     <a routerLink="/extravios" 
     [ngClass]="{'hover:text-primary': isroot===true, 'hover:text-secondary': isroot===false }"
     class=" transition-colors">Objetos Perdidos</a>
-    <a routerLink="/" 
+    <a routerLink="/credits" 
     [ngClass]="{'hover:text-primary': isroot===true, 'hover:text-secondary': isroot===false }"
-    class=" transition-colors">Contacto</a>
+    class=" transition-colors">Creditos</a>
 
     @if (isLoggedIn) {
     <p>Hola {{ username }}</p>
