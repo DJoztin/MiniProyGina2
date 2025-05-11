@@ -11,6 +11,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BookingService } from '../../services/booking.service';
 import { FormsModule } from '@angular/forms';
 import { Reservation } from '../../models/reservation';
+import { FormReservacionComponent } from "../form-reservacion/form-reservacion.component";
 
 @Component({
   selector: 'app-hotel',
@@ -23,20 +24,14 @@ import { Reservation } from '../../models/reservation';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-  ],
+    FormReservacionComponent
+],
   templateUrl: './hotel.component.html',
   styleUrl: './hotel.component.css',
 })
 export class HotelComponent {
   hotel!: Hotel;
-  reserva: Reservation = {
-    id: 0,
-    nombre: '',
-    email: '',
-    fechaEntrada: '',
-    fechaSalida: '',
-    hotel: ''
-  };
+
   constructor(
     public hotelsService: HotelsService,
     public bookingService: BookingService,
@@ -44,25 +39,16 @@ export class HotelComponent {
   ) {
     this.activatedRoute.params.subscribe((params) => {
       this.hotel = this.hotelsService.getHotel(params['id']);
-      this.reserva.hotel = this.hotel.nombre;
     });
   }
 
-  reservar() {
+  reservar(reservation: Reservation) {
+    // Agregar el hotel a la reservation
+    reservation.hotel = this.hotel.nombre;
     // TODO: tratar bien la date para que se guarde lindo en el localstorage
-    this.bookingService.agregarReserva(this.reserva);
+    this.bookingService.agregarReserva(reservation);
     // Limpiar los valores q se tenian
-    this.clearReservation();
   }
 
-  clearReservation(): void {
-    this.reserva = {
-      id: 0,
-      nombre: '',
-      email: '',
-      fechaEntrada: '',
-      fechaSalida: '',
-      hotel: ''
-    };
-  }
+
 }

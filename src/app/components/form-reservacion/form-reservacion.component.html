@@ -1,0 +1,32 @@
+<h3 class="text-xl font-semibold text-gray-800 mb-4">
+    {{title}}
+</h3>
+<form>
+    <mat-form-field appearance="fill" class="w-full mb-4">
+        <mat-label>Nombre completo</mat-label>
+        <input [(ngModel)]="nombre" name="nombre" matInput required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full mb-4">
+        <mat-label>Correo electrónico</mat-label>
+        <input [(ngModel)]="email" name="email" matInput type="email" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full mb-4">
+        <mat-label>Fecha de llegada</mat-label>
+        <input [(ngModel)]="fechaEntrada" matInput [matDatepicker]="picker1" required name="fechaEntrada" />
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full mb-4">
+        <mat-label>Fecha de salida</mat-label>
+        <input [(ngModel)]="fechaSalida" matInput [matDatepicker]="picker2" required name="fechaSalida" />
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="w-full mt-4" (click)="confirmarReserva()" type="button">
+        Confirmar reserva
+    </button>
+</form>

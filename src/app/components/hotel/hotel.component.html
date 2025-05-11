@@ -30,62 +30,7 @@
 
       <!-- Derecha: formulario -->
       <div class="p-6 border-t md:border-t-0 md:border-l border-gray-200">
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">
-          Reservar habitación
-        </h3>
-        <form>
-          <mat-form-field appearance="fill" class="w-full mb-4">
-            <mat-label>Nombre completo</mat-label>
-            <input [(ngModel)]="reserva.nombre" name="nombre" matInput required />
-          </mat-form-field>
-
-          <mat-form-field appearance="fill" class="w-full mb-4">
-            <mat-label>Correo electrónico</mat-label>
-            <input [(ngModel)]="reserva.email" name="email" matInput type="email" required />
-          </mat-form-field>
-
-          <mat-form-field appearance="fill" class="w-full mb-4">
-            <mat-label>Fecha de llegada</mat-label>
-            <input
-             [(ngModel)]="reserva.fechaEntrada"
-              matInput
-              [matDatepicker]="picker1"
-              required
-              name="fechaEntrada"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker1"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill" class="w-full mb-4">
-            <mat-label>Fecha de salida</mat-label>
-            <input
-              [(ngModel)]="reserva.fechaSalida"
-              matInput
-              [matDatepicker]="picker2"
-              required
-              name="fechaSalida"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker2"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-
-          <button
-            mat-raised-button
-            color="primary"
-            class="w-full mt-4"
-            (click)="reservar()"
-            type="button"
-          >
-            Confirmar reserva
-          </button>
-        </form>
+        <app-form-reservacion [title]="'Reservar Habitacion'" (sendForm)="reservar($event)"></app-form-reservacion>
       </div>
     </div>
   </mat-card>
