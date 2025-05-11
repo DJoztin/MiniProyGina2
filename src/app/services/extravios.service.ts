@@ -6,7 +6,7 @@ import { Objeto } from '../models/objetos';
 })
 export class ExtraviosService {
 
-  objetos!: Objeto[];
+  objetos: Objeto[]=[];
 
 
   constructor() {
@@ -26,7 +26,7 @@ export class ExtraviosService {
 
    nuevoObjeto(): Objeto{
     return{
-      id:this.objetos.length,
+      id:this.objetos.length + 1,
       email: '',
       ubicacion: '',
       fecha: '',

@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   username: string = '';
   loginError: boolean = false;
-
+  img: string = 'assets/img/log.webp';
   hide = signal(true);
 
   togglePasswordVisibility(event: MouseEvent): void {
