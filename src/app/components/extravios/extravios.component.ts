@@ -57,6 +57,10 @@ export class ExtraviosComponent {
   nuevoObjeto(): void {
       if (this.form.valid) {
         const objetoForm = this.form.value;
+        const fecha = objetoForm.fecha instanceof Date
+        ? objetoForm.fecha.toISOString().split('T')[0]
+        : objetoForm.fecha;
+        objetoForm.fecha = fecha;
         this.extraviosService.agregarObjeto(objetoForm);
         Swal.fire({
           title: '¡Éxito!',
