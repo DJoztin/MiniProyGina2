@@ -45,7 +45,7 @@ export class AdminPanelComponent {
     // Tomar los datos de los servicios
 
     this.fetchData();
-    // Si no esta logueado, no puede estar aqui, se redirecciona al Loguin
+    // Si no esta logueado, no puede estar aqui, se redirecciona al Login
     this.authService.loggedIn$.subscribe((status) => {
       this.isLoggedIn = status;
     });

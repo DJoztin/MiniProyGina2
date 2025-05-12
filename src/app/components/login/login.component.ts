@@ -1,5 +1,4 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { LoginService } from '../../services/login.service';
 import {
   FormBuilder,
   FormGroup,
@@ -13,7 +12,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../services/auth.service';
 import { MatIcon } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-
 
 @Component({
   selector: 'app-login',
@@ -45,7 +43,6 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(
-    private loginService: LoginService,
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
@@ -58,7 +55,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginService.getAccounts().subscribe((data: any) => {
+    this.authService.getAccounts().subscribe((data: any) => {
       this.accounts = data;
     });
     this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
