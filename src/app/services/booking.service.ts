@@ -15,7 +15,6 @@ export class BookingService {
   }
 
   agregarReserva(reserva: Reservation): void {
-    console.log(reserva);
     // Sacar el id del componente que sera = el ultimo id que se tiene + 1
     reserva.id = (this.reservas.length === 0) ? 1 : this.reservas[this.reservas.length - 1].id + 1;
     this.reservas.push(reserva);
@@ -23,7 +22,6 @@ export class BookingService {
   }
 
   editReserva(reserva: Reservation): void{
-    console.log(reserva);
     // Encontrar el objeto que se edito
     const index = this.reservas.findIndex(rsv => rsv.id === reserva.id);
     this.reservas[index] = reserva;

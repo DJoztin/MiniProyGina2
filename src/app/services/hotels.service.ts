@@ -40,10 +40,10 @@ export class HotelsService {
     if (this.hotelsSubject.getValue().length !== 0) return;
 
     this.http
-      // .get<Hotel[]>('https://fluky-resorts-2.free.beeceptor.com/hotels')
+      .get<Hotel[]>('https://fluky-resorts-2.free.beeceptor.com/hotels')
       // .get<Hotel[]>('https://fluky-resorts.free.beeceptor.com/hotels')
       // .get<Hotel[]>('https://fluky.free.beeceptor.com/todos')
-      .get<Hotel[]>('https://fluky2.free.beeceptor.com/todos')
+      // .get<Hotel[]>('https://fluky2.free.beeceptor.com/todos')
       .pipe(take(1))
       .subscribe((hotels) => {
         this.hotelsSubject.next(hotels);
@@ -52,7 +52,6 @@ export class HotelsService {
 
   getBestHotels(): Hotel[] {
     const aux = [...this.hotelsSubject.getValue()];
-    console.log('AUX', aux);
     const bestHotels = aux.sort((a, b) => b.rating - a.rating).slice(0, 3);
     return bestHotels;
   }

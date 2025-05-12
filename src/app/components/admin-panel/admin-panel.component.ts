@@ -66,19 +66,16 @@ export class AdminPanelComponent {
   }
 
   openNewModal(type: string): void {
-    console.log(type);
 
     // Se abre el formulario con data null porque es para agregar un nuevo registro
     this.openForm(type, null, false);
   }
 
   openEditModal(type: string, id: number) {
-    console.log(type, id);
 
     // Se tiene que conseguir el objeto que se quiere editar del arreglo correspondiente y mandarlo a open form como data
     const data = (type === this.reservType) ? this.reservations.find(aux => aux.id === id) : this.lostItems.find(aux => aux.id === id);
 
-    console.log(data);
     this.openForm(type, data);
   }
 
@@ -92,7 +89,6 @@ export class AdminPanelComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Datos recibidos: ', result);
         if(type == this.reservType){
           if(!isEditing){
             // Creacion de nueva reservacion
