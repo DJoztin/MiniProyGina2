@@ -35,7 +35,6 @@ export class AboutUsComponent {
     Swal.fire({
       title: this.cards[index].title,
       text: this.cards[index].content,
-      width: '40%',
       backdrop: `
         rgba(0,0,0,0.6)
       `,

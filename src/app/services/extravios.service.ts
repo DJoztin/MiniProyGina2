@@ -25,10 +25,8 @@ export class ExtraviosService {
   }
 
   editObjeto(obj: Objeto): void {
-    console.log("En Editar Objeto: ", obj);
     const index = this.objetos.findIndex(aux => aux.id === obj.id);
     this.objetos[index] = obj;
-    console.log(this.objetos);
     this.saveToLocalStorage();
   }
 
@@ -56,7 +54,6 @@ export class ExtraviosService {
   }
 
   saveToLocalStorage(): void {
-    console.log("Objeto a guardar: ", JSON.stringify(this.objetos));
     localStorage.setItem('objetosPerdidos', JSON.stringify(this.objetos));
   }
 }

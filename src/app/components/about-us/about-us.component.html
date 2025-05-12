@@ -6,7 +6,7 @@
     <div class="flex flex-wrap justify-around mt-5" >
         @for (card of cards; track card; let i = $index) {
             
-            <div (click)="showMoreInfo(i)" class="w-1/4 aspect-square shadow-xl text-white text-center m-3 p-5 relative overflow-hidden rounded-4xl">
+            <div (click)="showMoreInfo(i)" class="w-full md:w-2/4 lg:w-1/4 aspect-square shadow-xl text-white text-center m-1  lg:m-3 p-5 relative overflow-hidden rounded-4xl">
                 <img class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full hover:scale-125 duration-500" 
                 [src]="card.img" alt="card img">
                 <h2 class=" absolute top-4 left-1/2 -translate-x-1/2 text-2xl font-bold">{{card.title}}</h2>

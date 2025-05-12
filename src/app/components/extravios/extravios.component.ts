@@ -59,7 +59,6 @@ export class ExtraviosComponent {
   }
 
   ngOnInit() {
-    console.log(this.data);
     if (this.data) {
       // Edicion, se llena los datos que ya estaban
       this.form.patchValue({
