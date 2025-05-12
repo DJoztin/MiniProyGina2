@@ -12,28 +12,54 @@
     <mat-form-field appearance="fill" class="w-full mb-4">
         <mat-label>Nombre completo</mat-label>
         <input [(ngModel)]="nombre" name="nombre" matInput required />
+        @if (!nombre) {
+            <mat-error>El nombre completo es obligatorio.</mat-error>
+        }
+        
     </mat-form-field>
+    @if (nombreInvalido) {
+      <mat-error>El nombre debe tener al menos 3 caracteres.</mat-error>
+    }
 
     <mat-form-field appearance="fill" class="w-full mb-4">
         <mat-label>Correo electrónico</mat-label>
         <input [(ngModel)]="email" name="email" matInput type="email" required />
+        @if (!email) {
+            <mat-error>El correo electrónico es obligatorio.</mat-error>
+        }
     </mat-form-field>
+    @if (emailInvalido) {
+        <mat-error>Debe ser un correo válido.</mat-error>
+    }
 
     <mat-form-field appearance="fill" class="w-full mb-4">
         <mat-label>Fecha de llegada</mat-label>
-        <input [(ngModel)]="fechaEntrada" matInput [matDatepicker]="picker1" required name="fechaEntrada" />
+        <input [(ngModel)]="fechaEntrada" matInput [matDatepicker]="picker1" required name="fechaEntrada" [min]="hoy" />
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
+        @if (!fechaEntrada) {
+            <mat-error>La fecha de llegada es obligatoria.</mat-error>
+        }
     </mat-form-field>
+    @if (fechaEntradaInvalida) {
+        <mat-error>La fecha de llegada debe ser posterior a hoy.</mat-error>
+    }
 
     <mat-form-field appearance="fill" class="w-full mb-4">
         <mat-label>Fecha de salida</mat-label>
-        <input [(ngModel)]="fechaSalida" matInput [matDatepicker]="picker2" required name="fechaSalida" />
+        <input [(ngModel)]="fechaSalida" matInput [matDatepicker]="picker2" required name="fechaSalida" [min]="fechaEntrada"/>
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
+        @if (!fechaSalida) {
+            <mat-error>La fecha de salida es obligatoria.</mat-error>
+        }
     </mat-form-field>
+    @if (fechaSalidaInvalida) {
+        <mat-error>La fecha de salida debe ser posterior a la fecha de llegada.</mat-error>
+    }
 
-    <button mat-raised-button color="primary" class="w-full mt-4" (click)="confirmarReserva()" type="button">
+    <button mat-raised-button color="primary" class="w-full mt-4" (click)="confirmarReserva()" type="button" [disabled]="!email || !nombre || !fechaEntrada || !fechaSalida
+                                                                                                            || nombreInvalido ||emailInvalido || fechaEntradaInvalida || fechaSalidaInvalida">
         Confirmar reserva
     </button>
 </form>

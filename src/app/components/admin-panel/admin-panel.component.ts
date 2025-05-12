@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { LoginService } from '../../services/login.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faL, faPencilAlt, faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { Reservation } from '../../models/reservation';
 import { BookingService } from '../../services/booking.service';
-import Swal from 'sweetalert2';
 import { AdminFormModalComponent } from '../admin-form-modal/admin-form-modal.component';
+import { Objeto } from '../../models/objetos';
+import { ExtraviosService } from '../../services/extravios.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -26,39 +27,19 @@ export class AdminPanelComponent {
   readonly reservType: string = "reserv";
   readonly lostItemType: string = "item"
 
-  // Cosas de prueba:
-  lostItems = [
-    {
-      nombreCliente: 'Juan Perez',
-      objeto: 'Llaves',
-      fechaPerdido: '2023-09-30',
-    },
-    {
-      nombreCliente: 'Margarita la diosa de la cumbia',
-      objeto: 'Cartera',
-      fechaPerdido: '2023-10-01',
-    },
-    {
-      nombreCliente: 'Carlos Santana',
-      objeto: 'Guitarra',
-      fechaPerdido: '2023-10-02',
-    },
-    {
-      nombreCliente: 'Frida Kahlo',
-      objeto: 'Pintura',
-      fechaPerdido: '2023-10-03',
-    },
-  ];
-
+  
+  lostItems: Objeto[] = [];
   reservations: Reservation[] = [];
-
-  constructor(private authService: AuthService, private router: Router,
-    private loginService: LoginService, private dialog: MatDialog, private reservService: BookingService) {
-  }
 
   editIcon = faPencilAlt;
   deleteIcon = faTrashAlt;
   addIcon = faPlusCircle;
+
+
+  constructor(private authService: AuthService, private router: Router,
+    private dialog: MatDialog, private reservService: BookingService,
+    private lostObjService: ExtraviosService) {}
+
 
   ngOnInit() {
     // Tomar los datos de los servicios
@@ -77,16 +58,11 @@ export class AdminPanelComponent {
     }
   }
 
-  logout() {
-    this.loginService.logout();
-    this.isLoggedIn = false;
-    this.router.navigate(['/']);
-  }
-
   // Funcion para agarrar los datos de los dos servicios, rsv y cosas perdidas, si estos devolvieran observables esta funcion
   // se podria ahorrar pero como no lo hacen es mejor asi
   fetchData(): void {
     this.reservations = this.reservService.getReservas();
+    this.lostItems = this.lostObjService.obtenerObjetos();
   }
 
   openNewModal(type: string): void {
@@ -100,7 +76,8 @@ export class AdminPanelComponent {
     console.log(type, id);
 
     // Se tiene que conseguir el objeto que se quiere editar del arreglo correspondiente y mandarlo a open form como data
-    const data = (type === this.reservType) ? this.reservations[id - 1] : this.lostItemType[id - 1];
+    const data = (type === this.reservType) ? this.reservations.find(aux => aux.id === id) : this.lostItems.find(aux => aux.id === id);
+
     console.log(data);
     this.openForm(type, data);
   }
@@ -126,9 +103,11 @@ export class AdminPanelComponent {
           }
         } else{
           if(!isEditing){
-            // Creacion de un nuevo objeto perdido
+            // Creacion de un objeto perdido
+            this.lostObjService.agregarObjeto(result);
           }else{
             // Edicion de un objeto perdido
+            this.lostObjService.editObjeto(result);
           }
         }
 
@@ -156,7 +135,7 @@ export class AdminPanelComponent {
   delete(type: string, id: number) {
     // IMPORTANT TODO!!!: Cambiar el else del operador ternario por el metodo de borrar cosa perdida
     // Llamar a servicio correspondiente y borrar registro, devuelve true si sale bien, si no sale bien devuelve false
-    let result: boolean = (type === this.reservType) ? this.reservService.deleteReserva(id) : this.reservService.deleteReserva(id);
+    let result: boolean = (type === this.reservType) ? this.reservService.deleteReserva(id) :  this.lostObjService.deleteObjeto(id);
     // Swal de confirmacion o error
     if (result) {
       Swal.fire({

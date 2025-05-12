@@ -31,9 +31,9 @@ export class BookingService {
   }
   
   deleteReserva(idReserva: number): boolean{
-    const rsv = this.reservas.find(rsv => rsv.id == idReserva)
-    if(rsv){
-      this.reservas.splice(this.reservas.indexOf(rsv),1);
+    const index = this.reservas.findIndex(rsv => rsv.id === idReserva);
+    if(index != -1){
+      this.reservas.splice(index,1);
       this.saveToLocalStorage();
       return true;
     } else{

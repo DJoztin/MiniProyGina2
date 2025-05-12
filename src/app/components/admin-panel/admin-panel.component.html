@@ -1,11 +1,8 @@
 <div class=" flex justify-between w-full text-4xl p-5 bg-gray-100">
     <h1>Bienvenido, {{username | uppercase}}</h1>
-    <button (click)="logout()"
-        class="text-lg font-bold hover:text-secondary transition-colors duration-200 cursor-pointer">Cerrar
-        sesion</button>
 </div>
 
-<div class="flex w-4/5 mx-auto gap-15 min-h-[61vh] my-8">
+<div class="flex flex-col w-3/5 mx-auto gap-15 min-h-[61vh] my-8">
     <div class="flex flex-col p-4 shadow-2xl  border border-gray-100 h-fit rounded-4xl grow-1 text-center bg-white">
         <h3 class="text-2xl font-bold text-gray-700">Reservaciones</h3>
         @if (reservations.length === 0) {
@@ -25,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                @for (reserv of reservations; track reserv; let i = $index) {
+                @for (reserv of reservations; track reserv) {
                 <tr>
                     <td class="border border-gray-300 px-4 py-2">{{reserv.hotel}}</td>
                     <td class="border border-gray-300 px-4 py-2">{{reserv.nombre}}</td>
@@ -69,24 +66,26 @@
         <table class="table-auto border-collapse border border-gray-300 w-full mt-4">
             <thead>
                 <tr class="bg-gray-200">
-                    <th class="border border-gray-300 px-4 py-2">Nombre Huesped</th>
-                    <th class="border border-gray-300 px-4 py-2">Objeto</th>
-                    <th class="border border-gray-300 px-4 py-2">Fecha Perdido</th>
-                    <th class="border border-gray-300 px-4 py-2">Actions</th>
+                    <th class="border border-gray-300 px-4 py-2">Email del Huesped</th>
+                    <th class="border border-gray-300 px-4 py-2">Hotel Perdido</th>
+                    <th class="border border-gray-300 px-4 py-2">Fecha de perdida</th>
+                    <th class="border border-gray-300 px-4 py-2">Tipo de articulo</th>
+                    <th class="border border-gray-300 px-4 py-2">actions</th>
                 </tr>
             </thead>
             <tbody>
-                @for (item of lostItems; track item; let i = $index) {
+                @for (item of lostItems; track item) {
                 <tr>
-                    <td class="border border-gray-300 px-4 py-2">{{item.nombreCliente}}</td>
-                    <td class="border border-gray-300 px-4 py-2">{{item.objeto}}</td>
-                    <td class="border border-gray-300 px-4 py-2">{{item.fechaPerdido}}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{item.email}}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{item.ubicacion}}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{item.fecha}}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{item.tipo}}</td>
                     <td class="border border-gray-300 px-4 py-2 ">
-                        <a (click)="openEditModal(lostItemType, i)" class="icon-button mx-1 cursor-pointer">
+                        <a (click)="openEditModal(lostItemType, item.id)" class="icon-button mx-1 cursor-pointer">
                             <fa-icon class="hover:text-secondary transition-colors duration-200"
                                 [icon]="editIcon"></fa-icon>
                         </a>
-                        <a (click)="showModalDelete(lostItemType, i)" class="icon-button mx-1 cursor-pointer">
+                        <a (click)="showModalDelete(lostItemType, item.id)" class="icon-button mx-1 cursor-pointer">
                             <fa-icon class="hover:text-secondary transition-colors duration-200"
                                 [icon]="deleteIcon"></fa-icon>
                         </a>
