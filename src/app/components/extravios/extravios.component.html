@@ -31,8 +31,12 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="form.get('fecha')?.hasError('required')">Campo requerido</mat-error>
-        <mat-error *ngIf="form.get('fecha')?.hasError('fechaPasada')">
+        <mat-error *ngIf="form.get('fecha')?.hasError('fechaNoPasada')">
           No puedes seleccionar una fecha anterior a una semana
+        </mat-error>
+        <mat-error *ngIf="form.get('fecha')?.hasError('fechaPasada')">
+          No puedes seleccionar una fecha superior a hoy
+
         </mat-error>
       </mat-form-field>
 

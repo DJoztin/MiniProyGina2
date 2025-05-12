@@ -13,9 +13,9 @@ import { CommonModule } from '@angular/common';
 })
 export class CarouselComponent {
   images = [
-    { url: '/assets/img/caroussel1.jpg' },
-    { url: '/assets/img/caroussel2.jpg' },
-    { url: '/assets/img/caroussel3.jpg' },
+    { url: 'assets/img/caroussel1.jpg' },
+    { url: 'assets/img/caroussel2.jpg' },
+    { url: 'assets/img/caroussel3.jpg' },
   ];
 
   currentIndex: number = 1;
