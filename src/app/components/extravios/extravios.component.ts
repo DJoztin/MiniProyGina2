@@ -94,8 +94,6 @@ export class ExtraviosComponent {
       objetoForm.fecha = fecha;
       Swal.fire({
         title: '¡Éxito!',
-        color: '#f0f0f0',
-        background: '#2d2d2d',
         text: 'Su ticket ha sido registrado correctamente.',
         icon: 'success',
         confirmButtonText: 'Aceptar'
