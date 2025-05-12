@@ -72,7 +72,9 @@ export class FormReservacionComponent {
           text: "Reservación realizada con éxito para " + reservation.hotel +".",
         }).then(() => {
           this.clearForm();
-          this.router.navigate(['/home']);
+          if(!this.isOnAdminPanel){
+            this.router.navigate(['/home']);
+          }
         });
       }
     })

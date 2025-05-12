@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
-import { MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import {
+  MatCard,
+  MatCardContent,
+} from '@angular/material/card';
 
 @Component({
   selector: 'app-credits',
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardSubtitle,
-    MatCardContent
-  ],
+  imports: [MatCard, MatCardContent],
   templateUrl: './credits.component.html',
-  styleUrl: './credits.component.css'
+  styleUrl: './credits.component.css',
 })
 export class CreditsComponent {
   equipo = [

@@ -1,12 +1,18 @@
-<div class="w-full  mx-auto  shadow-lg h-100 flex justify-between items-center p-5 m-2 
-bg-cover bg-no-repeat bg-center transition-all duration-500 ease-in-out" [ngStyle]="{'background-image': backgroundImage }">
-
-    <button mat-icon-button  (click)="prev()">
-        <mat-icon style="color: white">chevron_left</mat-icon>
+<div class="flex flex-col w-full text-center justify-between mx-auto m-5">
+  <div class="my-5">
+    <h1 class="text-4xl">Galeria</h1>
+    <h2 class="text-2xl">Habitaciones, vistas y experiencias inolvidables.</h2>
+  </div>
+  <div
+    class="w-full mx-auto shadow-lg h-100 flex justify-between items-center p-5 m-2 bg-cover bg-no-repeat bg-center transition-all duration-500 ease-in-out"
+    [ngStyle]="{ 'background-image': backgroundImage }"
+  >
+    <button mat-icon-button (click)="prev()">
+      <mat-icon style="color: white">chevron_left</mat-icon>
     </button>
 
     <button mat-icon-button (click)="next()">
-        <mat-icon style="color: white">chevron_right</mat-icon>
+      <mat-icon style="color: white">chevron_right</mat-icon>
     </button>
-
+  </div>
 </div>

@@ -50,7 +50,7 @@ export class ExtraviosComponent {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       ubicacion: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      fecha: ['', [Validators.required, fechaNoPasadaValidator]],
+      fecha: ['', [Validators.required, fechaNoPasadaValidator, fechaPasadaValidator]],
       tipo: ['', [Validators.required]],
       descripcion: ['', [Validators.required, Validators.maxLength(150)]],
       aceptarTerminos: [false, Validators.requiredTrue]
@@ -94,8 +94,6 @@ export class ExtraviosComponent {
       objetoForm.fecha = fecha;
       Swal.fire({
         title: '¡Éxito!',
-        color: '#f0f0f0',
-        background: '#2d2d2d',
         text: 'Su ticket ha sido registrado correctamente.',
         icon: 'success',
         confirmButtonText: 'Aceptar'
@@ -120,8 +118,35 @@ export function fechaNoPasadaValidator(control: AbstractControl): ValidationErro
 
   const fechaIngresada = new Date(valor);
   const semanaAtras = new Date();
+  const semanaDelante = new Date();
+  semanaDelante.setDate(semanaDelante.getDate() + 1);
   semanaAtras.setDate(semanaAtras.getDate() - 7);
   semanaAtras.setHours(0, 0, 0, 0);
+  semanaDelante.setHours(0, 0, 0, 0);
+  // Compara la fecha ingresada con la fecha actual
+  // Si la fecha ingresada es menor a la fecha actual, entonces es una fecha pasada
+  if (fechaIngresada < semanaAtras) {
+    return { fechaNoPasada: true };
+  }
+  return null;
 
-  return fechaIngresada < semanaAtras ? { fechaPasada: true } : null;
+ 
+
+}
+
+export function fechaPasadaValidator(control: AbstractControl): ValidationErrors | null {
+    const valor = control.value;
+  if (!valor) return null;
+
+  const fechaIngresada = new Date(valor);
+  const semanaDelante = new Date();
+  ;
+  semanaDelante.setHours(0, 0, 0, 0);
+  // Compara la fecha ingresada con la fecha actual
+  // Si la fecha ingresada es menor a la fecha actual, entonces es una fecha pasada
+  if (fechaIngresada > semanaDelante) {
+    return { fechaPasada: true };
+  }
+  return null;
+
 }
