@@ -27,7 +27,7 @@ export class CreditsComponent {
       nombre: 'Luis David Flores Martínez',
       id: '348961',
       descripcion:
-        'El organizador.Controla los documentos y hace que todo esté en orden. Cuando habla es porque ya solucionó lo que los demás estaban discutiendo. El pegamento del equipo.',
+        'El organizador. Controla los documentos y hace que todo esté en orden. Cuando habla es porque ya solucionó lo que los demás estaban discutiendo. El pegamento del equipo.',
       foto: 'assets/img/integrantes/luis.jpeg',
     },
     {
