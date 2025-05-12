@@ -5,9 +5,6 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle }
   selector: 'app-credits',
   imports: [
     MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardSubtitle,
     MatCardContent
   ],
   templateUrl: './credits.component.html',
