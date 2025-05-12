@@ -6,7 +6,7 @@ import { HotelsComponent } from './components/hotels/hotels.component';
 import { HotelComponent } from './components/hotel/hotel.component';
 import { ExtraviosComponent } from './components/extravios/extravios.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
-import { CreditsComponent } from './credits/credits.component';
+import { CreditsComponent } from './components/credits/credits.component';
 
 export const routes: Routes = [
   {
