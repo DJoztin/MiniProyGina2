@@ -1,10 +1,10 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
-import { LoginService } from '../../services/login.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   private routeSub!: Subscription;
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.routeSub = this.router.events
@@ -40,11 +40,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.loginService.logout();
+    this.authService.logout();
     this.isLoggedIn = false;
   }
 
-  redirectAdmin(){
+  redirectAdmin() {
     this.router.navigate(['/admin']);
   }
 }

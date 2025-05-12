@@ -1,8 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  constructor(private http: HttpClient) {}
+
   private loggedInSubject = new BehaviorSubject<boolean>(
     localStorage.getItem('isLoggedIn') === 'true'
   );
@@ -12,6 +15,10 @@ export class AuthService {
 
   loggedIn$ = this.loggedInSubject.asObservable();
   username$ = this.usernameSubject.asObservable();
+
+  getAccounts() {
+    return this.http.get('assets/accounts.json').pipe(take(1));
+  }
 
   login(username: string): void {
     localStorage.setItem('isLoggedIn', 'true');
