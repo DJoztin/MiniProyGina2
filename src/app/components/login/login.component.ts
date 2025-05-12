@@ -10,10 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatError } from '@angular/material/form-field';
 import { AuthService } from '../../services/auth.service';
 import { MatIcon } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -48,7 +47,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -87,6 +87,8 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.username = username;
       this.loginError = false;
+      // Redireccion al panel de admin
+      this.router.navigate(['/admin']);
     } else {
       this.loginError = true;
     }
