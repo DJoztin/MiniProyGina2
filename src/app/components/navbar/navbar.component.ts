@@ -43,4 +43,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.loginService.logout();
     this.isLoggedIn = false;
   }
+
+  redirectAdmin(){
+    this.router.navigate(['/admin']);
+  }
 }

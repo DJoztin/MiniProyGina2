@@ -47,7 +47,11 @@
     >
 
     @if (isLoggedIn) {
-    <p>Hola {{ username }}</p>
+    <p class="cursor-pointer transition-colors"
+      [ngClass]="{
+        'hover:text-primary': isroot === true,
+        'hover:text-secondary': isroot === false
+      }" (click)="redirectAdmin()">Hola {{ username }}</p>
     <a
       [ngClass]="{
         'hover:text-primary': isroot === true,
