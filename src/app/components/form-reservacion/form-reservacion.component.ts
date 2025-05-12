@@ -104,7 +104,7 @@ export class FormReservacionComponent {
   }
 
   get emailInvalido(): boolean {
-    return !this.email.includes('@') || !this.email.includes('.');
+    return !!this.email && (!this.email.includes('@') || !this.email.includes('.'));
   }
 
   get fechaEntradaInvalida(): boolean {
