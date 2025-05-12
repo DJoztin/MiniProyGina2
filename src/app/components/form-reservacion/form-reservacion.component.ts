@@ -98,7 +98,24 @@ export class FormReservacionComponent {
     this.fechaSalida= "";
   }
 
+ //Validaciones
+  get nombreInvalido(): boolean {
+    return !!this.nombre && this.nombre.length < 3;
+  }
+
   get emailInvalido(): boolean {
-    return !!this.email && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.email);
-}
+    return !this.email.includes('@') || !this.email.includes('.');
+  }
+
+  get fechaEntradaInvalida(): boolean {
+    return new Date(this.fechaEntrada) < this.hoy;
+  }
+
+  get fechaSalidaInvalida(): boolean {
+    return !!this.fechaSalida && (
+      !this.fechaEntrada ||
+      new Date(this.fechaSalida) <= new Date(this.fechaEntrada)
+    );
+  }
+
 }

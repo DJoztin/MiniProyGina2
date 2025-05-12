@@ -15,7 +15,11 @@
         @if (!nombre) {
             <mat-error>El nombre completo es obligatorio.</mat-error>
         }
+        
     </mat-form-field>
+    @if (nombreInvalido) {
+      <mat-error>El nombre debe tener al menos 3 caracteres.</mat-error>
+    }
 
     <mat-form-field appearance="fill" class="w-full mb-4">
         <mat-label>Correo electrónico</mat-label>
@@ -24,7 +28,7 @@
             <mat-error>El correo electrónico es obligatorio.</mat-error>
         }
     </mat-form-field>
-    @if (email && !email.includes('@')) {
+    @if (emailInvalido) {
         <mat-error>Debe ser un correo válido.</mat-error>
     }
 
@@ -37,6 +41,9 @@
             <mat-error>La fecha de llegada es obligatoria.</mat-error>
         }
     </mat-form-field>
+    @if (fechaEntradaInvalida) {
+        <mat-error>La fecha de llegada debe ser posterior a hoy.</mat-error>
+    }
 
     <mat-form-field appearance="fill" class="w-full mb-4">
         <mat-label>Fecha de salida</mat-label>
@@ -47,8 +54,12 @@
             <mat-error>La fecha de salida es obligatoria.</mat-error>
         }
     </mat-form-field>
+    @if (fechaSalidaInvalida) {
+        <mat-error>La fecha de salida debe ser posterior a la fecha de llegada.</mat-error>
+    }
 
-    <button mat-raised-button color="primary" class="w-full mt-4" (click)="confirmarReserva()" type="button" [disabled]="!email || !nombre || !fechaEntrada || !fechaSalida || email.includes('@') === false">
+    <button mat-raised-button color="primary" class="w-full mt-4" (click)="confirmarReserva()" type="button" [disabled]="!email || !nombre || !fechaEntrada || !fechaSalida
+                                                                                                            || nombreInvalido ||emailInvalido || fechaEntradaInvalida || fechaSalidaInvalida">
         Confirmar reserva
     </button>
 </form>
